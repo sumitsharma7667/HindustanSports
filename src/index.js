@@ -8,14 +8,16 @@ import { createBrowserHistory } from "history";
 import Home from "./Home"
 import Singleproduct from './Singleproduct';
 import about from './About'
-import {MyContextprovider} from "./Context"
+import { MyContextprovider } from "./Context"
+import ProductForm from "./Productform"
 ReactDOM.render(
   <BrowserRouter >
       <Switch>
         <MyContextprovider>
         <Route path="/Home" component={Home} />
         <Route path="/Singleproduct"component={Singleproduct}/>
-        <Route path="/about"component={about}/>
+        <Route path="/about" component={about} />
+         <Route path="/ProductForm" component={ProductForm} />
         </MyContextprovider>
         <Route path="/">
         <Home/>
