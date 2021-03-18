@@ -10,7 +10,7 @@ import Singleproduct from './Singleproduct';
 import about from './About'
 import {MyContextprovider} from "./Context"
 import AdminLayout from "./AdminLayout"
-import Productadd from "./Productadd"
+import Productform from "./Productform"
 const AppRoute = ({component:Component,layout:Layout, ...rest})=>(
   <Route {...rest} render ={props=>(
     <Layout><Component {...props}> </Component></Layout>
@@ -20,11 +20,10 @@ ReactDOM.render(
   <BrowserRouter >
       <Switch>
         <MyContextprovider>
-        <AppRoute path ="/productadd" layout={AdminLayout} component={Productadd} />
+        <AppRoute path ="/productform" layout={AdminLayout} component={Productform} />
         <Route path="/Home" component={Home} />
         <Route path="/Singleproduct"component={Singleproduct}/>
-        <Route path="/about" component={about} />
-         <Route path="/ProductForm" component={ProductForm} />
+        <Route path="/about" component={about} />        
         </MyContextprovider>
         <Route path="/">
         <Home/>
