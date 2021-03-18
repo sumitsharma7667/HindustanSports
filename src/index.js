@@ -23,7 +23,8 @@ ReactDOM.render(
         <AppRoute path ="/productadd" layout={AdminLayout} component={Productadd} />
         <Route path="/Home" component={Home} />
         <Route path="/Singleproduct"component={Singleproduct}/>
-        <Route path="/about"component={about}/>
+        <Route path="/about" component={about} />
+         <Route path="/ProductForm" component={ProductForm} />
         </MyContextprovider>
         <Route path="/">
         <Home/>
