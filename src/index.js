@@ -9,10 +9,18 @@ import Home from "./Home"
 import Singleproduct from './Singleproduct';
 import about from './About'
 import {MyContextprovider} from "./Context"
+import AdminLayout from "./AdminLayout"
+import Productadd from "./Productadd"
+const AppRoute = ({component:Component,layout:Layout, ...rest})=>(
+  <Route {...rest} render ={props=>(
+    <Layout><Component {...props}> </Component></Layout>
+  )}></Route>
+  )
 ReactDOM.render(
   <BrowserRouter >
       <Switch>
         <MyContextprovider>
+        <AppRoute path ="/productadd" layout={AdminLayout} component={Productadd} />
         <Route path="/Home" component={Home} />
         <Route path="/Singleproduct"component={Singleproduct}/>
         <Route path="/about"component={about}/>
