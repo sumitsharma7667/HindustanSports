@@ -61,9 +61,7 @@ class AdminLayout extends React.Component{
                         <Link to="/CancelOrders" onClick={()=>{{this.setState({NavHeading:'Orders/Cancel Orders'})}}}>Cancel Orders</Link>
                         </li> */}
                     </ul>
-                </li>
-     
-                
+                </li>                
                 <li>
                     <Link to="" onClick={()=>{this.logout()}}> <i class="fas fa-sign-out-alt"></i> Logout</Link>
                 </li>
@@ -146,9 +144,8 @@ class AdminLayout extends React.Component{
                 </li>
             </ul>
         </nav>
-  }
+    }
         <div id="content">
-
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container-fluid">
                     <h4>{this.state.NavHeading}</h4>

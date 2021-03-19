@@ -11,6 +11,7 @@ import about from './About'
 import {MyContextprovider} from "./Context"
 import AdminLayout from "./AdminLayout"
 import Productform from "./Productform"
+import Dashboard from "./Dashboard"
 const AppRoute = ({component:Component,layout:Layout, ...rest})=>(
   <Route {...rest} render ={props=>(
     <Layout><Component {...props}> </Component></Layout>
@@ -21,6 +22,7 @@ ReactDOM.render(
       <Switch>
         <MyContextprovider>
         <AppRoute path ="/productform" layout={AdminLayout} component={Productform} />
+        <AppRoute path ="/dashboard" layout={AdminLayout} component={Dashboard} />
         <Route path="/Home" component={Home} />
         <Route path="/Singleproduct"component={Singleproduct}/>
         <Route path="/about" component={about} />        
