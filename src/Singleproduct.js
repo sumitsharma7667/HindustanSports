@@ -6,13 +6,7 @@ const Singleproduct=()=>{
 const data = useContext(MyContext)
 return(
     <div>
-    <h1>SingleProduct</h1>
-    <h2>{data.value}</h2>
-    <Link to="Home">Home</Link ><br></br>
-    <Link to="about">Singleproduct</Link >
-    <button onClick={()=>{data.funn("Single Product")}}>
-     Press Me
-    </button>
+        <h1>hello</h1>
     </div>
 )
 }

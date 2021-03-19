@@ -1,6 +1,7 @@
 import React from 'react';
 import Moment from 'moment';
 import {Chart} from "react-google-charts";
+import "./style.css"
 var total_orders = 0
 var total_approve_orders = 0
 var total_reject_orders = 0
