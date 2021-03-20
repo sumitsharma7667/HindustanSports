@@ -3,14 +3,33 @@ height:70vh;
 padding:20px;
 }
 body{
-    background-color: #EAEDED; 
+background-color: #EAEDED; 
+font-family: 'Montserrat', sans-serif;
 }
 .container{
-    background-color: #EAEDED;
+background-color: #EAEDED;
+}
+.headersearchbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.searchbar{
+    width:600px; 
+    height:40px;
+    border-radius: 10px;  
+    text-align: center;
+    box-shadow: 5px 5px 15px #000;
+}
+.searchicon{
+    font-size:25px;
+    padding-left:10px;
+    color:#fff;
+
 }
 .section1{
-    background-color: #131921;
-    box-shadow: 10px 10px 8px #888888;    
+    background-color: #fff;
+    /* box-shadow: 10px 10px 15px grey;     */
 }
 .player_image{
     height:410px;
@@ -23,21 +42,21 @@ body{
     padding: 20px;
 }
 .section2div2{
-box-shadow: 5px 5px 8px #000;
-background:linear-gradient(#E14B4B, #FC8F00);
+box-shadow: 5px 5px 25px grey;
+background:#fff;
 height: 180px;
 justify-content: center;
 display: flex;
 }
 .section2{
-height: 60vh;
+height: 50vh;
 }
 /*.firststproduct{
 height: 150;
 width:150;
 }*/
 .section1firstdiv{
-z-index: 2;
+/* z-index: 2; */
 }
 .sectionthird{
     background-color:#131921;
@@ -58,7 +77,7 @@ text-align: center;
     margin-right:15px;
     margin-top:20px;
     padding: 0px;
-    box-shadow: 5px 5px 8px #000;
+    /* box-shadow: 2px 2px 2px #000; */
 }
 .thirdsectionrow{
 justify-content:center;
@@ -78,7 +97,7 @@ padding:5px;
  }  
  .box1div3{
      text-align: center;
-     box-shadow: 0px 2px 8px #888888;
+     box-shadow: 0px 2px 2px #888888;
  }     
  .box1div3 img{
      height:10px;
@@ -87,7 +106,7 @@ padding:5px;
    
  }   
  .box1div4{
-    box-shadow: 0px 2px 8px #888888;
+    box-shadow: 0px 2px 2px #888888;
     border-radius: 5px;
     width: 200px;
     padding: 3px;
@@ -102,7 +121,7 @@ padding:5px;
      width:180px;
      border-radius:90px;
      border: 5px solid #fff;
-     box-shadow: 5px 4px 12px #4c4c4c;
+     box-shadow: 5px 4px 12px grey;
      opacity: 0.9;  
      object-fit: cover;   
  }
@@ -111,7 +130,7 @@ padding:5px;
  }
  .coruslediv2{
      height: 40px;
-     box-shadow: 2px 2px 10px #4c4c4c;
+     box-shadow: 0.5px 0.5px 12px grey;
      background-color: #fff;
      padding: 10px;
     text-align: center;
@@ -177,3 +196,94 @@ header{
     margin-top: 100px;
 }
 /* end product Form */
+
+/* singleproduct */
+.section1div{
+    background-color: #fff;
+    /* box-shadow: 10px 10px 8px #888888;     */
+    height: 65vh;
+}
+.section1div2{  
+    padding:5px;
+    /* border: 2px solid grey; */
+}
+.productname{
+    /* height: 35vh; */
+    padding:15px;
+    /* border:1px solid grey; */
+}
+.productname h2 {
+    color: #000;
+    text-align: center;
+}
+.singleproductimgdiv{
+    display: flex;
+}
+.singleproductimg{
+    height: 55vh;
+    margin: auto;
+    text-align: center;
+    object-fit: cover;  
+}
+.dcenter{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+.productname p{
+    color:#000;
+    font-size: 20px;
+    font-weight: 800;
+}
+.buynowbtn{
+    background-color: #fff;
+    border: 0px;
+    border-radius:10px;
+    box-shadow: 5px 5px 8px grey; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.buynowbtn i {
+    font-size: 30px;
+    padding-right: 10px;
+}
+.singleproductgallaryimg{
+    height: 100px;
+    border-radius: 10px;
+    padding:5px;
+    margin-bottom:10px
+}
+.div2gallary{
+    display: flex;
+    justify-content: center;
+}
+.singlesection3{
+    background-color:#272727;
+    box-shadow: 1px 1px 5px grey;
+    height: 33vh; 
+    display: flex;
+    align-items: center;
+}
+.singlesection3 .container {
+    background-color:#272727;  
+}
+.singlesection3 h4 { 
+color: #fff;
+}
+.singlesection3 h6 { 
+    color: #fff;
+    }
+    .footer{
+        background-color:#272727; 
+        color:#fff;
+        height: 50vh;
+    }
+    .footer .container{
+        background-color:#272727; 
+    }
+    .productname p{
+        text-align: center;
+    }
+/* end singleproduct */

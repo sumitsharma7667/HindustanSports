@@ -32,11 +32,12 @@ const Home = () => {
             <header>
                 <div className="container headercontainer">
                 <div className="row">
-                    <div className="col-3">
+                    <div className="col-2">
                     <img src={require("./images/logo.png").default} className="logo" />
                     </div>
-                    <div className="col-6">
-
+                    <div className="col-7 headersearchbar">
+                        <input type="text" placeholder="Search Here" className="searchbar"/>
+                        <i className="fas fa-search searchicon"></i>
                     </div>
                     <div className="col-3 headerbuttondiv">
                         <div className="headerbutton"><p>Login</p></div>
@@ -51,7 +52,7 @@ const Home = () => {
                     <div className="container section1">
                         <div className="row">
                             <div className="col-5 section1firstdiv">
-                                <img src={require("./images/basketball_player.png").default} className="player_image" />
+                                <img src={require("./images/portrait-handsome-male-tennis-player-celebrating-his-success-isolated-white-wall-human-emotions-winner-sport-victory-concept.jpg").default} className="player_image" />
                             </div>
                             <div className="col-7">
                                 <div className="row">
@@ -91,65 +92,65 @@ const Home = () => {
                                 <div className="crouseldiv">
                                     <img src={require("./images/cricket.jpg").default} className="crouselimg" />
                                 </div>
-                                <div className="coruslediv2">
+                                {/* <div className="coruslediv2">
                                     <h4>Cricket</h4>
+                                </div> */}
+                            </div>
+                            <div className="Carousel">
+                                <div className="crouseldiv">
+                                    <img src={require("./images/side-view-woman-man-playing-beach-volleyball.jpg").default} className="crouselimg" />
                                 </div>
+                                {/* <div className="coruslediv2">
+                                    <h4>Volleyball</h4>
+                                </div> */}
+                            </div>
+                            <div className="Carousel">
+                                <div className="crouseldiv">
+                                    <img src={require("./images/young-couple-playing-tennis-court.jpg").default} className="crouselimg" />
+                                </div>
+                                {/* <div className="coruslediv2">
+                                    <h4>Tennis</h4>
+                                </div> */}
+                            </div>
+                            <div className="Carousel">
+                                <div className="crouseldiv">
+                                    <img src={require("./images/young-basketball-player-team-wearing-sportwear-training-practicing-action-motion-isolated-blue-background-neon-light-concept-sport-movement-energy-dynamic-healthy-lifestyle.jpg").default} className="crouselimg" />
+                                </div>
+                                {/* <div className="coruslediv2">
+                                    <h4>Basketball</h4>
+                                </div> */}
+                            </div>  
+                            <div className="Carousel">
+                                <div className="crouseldiv">
+                                    <img src={require("./images/young-woman-playing-badminton-gym.jpg").default} className="crouselimg" />
+                                </div>
+                                {/* <div className="coruslediv2">
+                                    <h4>Badminton</h4>
+                                </div> */}
                             </div>
                             <div className="Carousel">
                                 <div className="crouseldiv">
                                     <img src={require("./images/add.jpg").default} className="crouselimg" />
                                 </div>
-                                <div className="coruslediv2">
+                                {/* <div className="coruslediv2">
                                     <h4>Cricket</h4>
-                                </div>
+                                </div> */}
                             </div>
                             <div className="Carousel">
                                 <div className="crouseldiv">
                                     <img src={require("./images/add.jpg").default} className="crouselimg" />
                                 </div>
-                                <div className="coruslediv2">
+                                {/* <div className="coruslediv2">
                                     <h4>Cricket</h4>
-                                </div>
+                                </div> */}
                             </div>
                             <div className="Carousel">
                                 <div className="crouseldiv">
                                     <img src={require("./images/add.jpg").default} className="crouselimg" />
                                 </div>
-                                <div className="coruslediv2">
+                                {/* <div className="coruslediv2">
                                     <h4>Cricket</h4>
-                                </div>
-                            </div>
-                            <div className="Carousel">
-                                <div className="crouseldiv">
-                                    <img src={require("./images/add.jpg").default} className="crouselimg" />
-                                </div>
-                                <div className="coruslediv2">
-                                    <h4>Cricket</h4>
-                                </div>
-                            </div>
-                            <div className="Carousel">
-                                <div className="crouseldiv">
-                                    <img src={require("./images/add.jpg").default} className="crouselimg" />
-                                </div>
-                                <div className="coruslediv2">
-                                    <h4>Cricket</h4>
-                                </div>
-                            </div>
-                            <div className="Carousel">
-                                <div className="crouseldiv">
-                                    <img src={require("./images/add.jpg").default} className="crouselimg" />
-                                </div>
-                                <div className="coruslediv2">
-                                    <h4>Cricket</h4>
-                                </div>
-                            </div>
-                            <div className="Carousel">
-                                <div className="crouseldiv">
-                                    <img src={require("./images/add.jpg").default} className="crouselimg" />
-                                </div>
-                                <div className="coruslediv2">
-                                    <h4>Cricket</h4>
-                                </div>
+                                </div> */}
                             </div>
                         </Carousel>
                     </div>
@@ -448,7 +449,7 @@ const Home = () => {
                 </div>
             </section>
             {/* footer section */}
-            <section>
+            <section className="footer">
                 <div className="container">
                     <div className="row">
                         <div className="col-3 pt-5">
