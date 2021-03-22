@@ -1,4 +1,5 @@
-import * as firebase from "firebase"
+import  firebase from 'firebase';
+import "firebase/storage"
 var firebaseConfig = {
     apiKey: "AIzaSyAs5NrEqzy8sckIxkGfxnq4ijEXrsan248",
     authDomain: "hindustansports-9903f.firebaseapp.com",
@@ -10,6 +11,8 @@ var firebaseConfig = {
     measurementId: "G-859E6HSVTH"
   };
   // Initialize Firebase
- var fireDb= firebase.initializeApp(firebaseConfig);
+ var firebaseDb= firebase.initializeApp(firebaseConfig);
 //   firebase.analytics();
-export default fireDb.database().ref();
+export default firebaseDb.database().ref();
+const storage=firebase.storage();
+export {storage}

@@ -12,7 +12,7 @@ import {
     PictureInPictureMagnifier,
     MOUSE_ACTIVATION,
     TOUCH_ACTIVATION
-  } from "react-image-magnifiers";
+  }from "react-image-magnifiers";
 const Singleproduct = () => {
     const data = useContext(MyContext)
     const responsive = {
