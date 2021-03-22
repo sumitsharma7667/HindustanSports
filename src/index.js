@@ -13,6 +13,7 @@ import AdminLayout from "./AdminLayout"
 import Productform from "./Productform"
 import Dashboard from "./Dashboard"
 import Addcategory from "./Addcategory"
+import Addbrand from "./Addbrand"
 const AppRoute = ({component:Component,layout:Layout, ...rest})=>(
   <Route {...rest} render ={props=>(
     <Layout><Component {...props}> </Component></Layout>
@@ -25,6 +26,9 @@ ReactDOM.render(
         <AppRoute path ="/productform" layout={AdminLayout} component={Productform} />
         <AppRoute path ="/dashboard" layout={AdminLayout} component={Dashboard} />
         <AppRoute path ="/Addcategory" layout={AdminLayout} component={Addcategory} />
+        <AppRoute path="/Dashboard" layout={AdminLayout} component={Dashboard} />
+        <AppRoute path="/addbrand" layout={AdminLayout} component={Addbrand} />
+        
         <Route path="/Home" component={Home} />
         <Route path="/Singleproduct"component={Singleproduct}/>
         <Route path="/about" component={about} />        

@@ -30,7 +30,7 @@ class AdminLayout extends React.Component{
             <img src={require('./images/logo.png').default} style={{height:"160px"}}/>
             </Link>
             </div>
-            <ul className="list-unstyled components">
+            <ul className="list-unstyled components mt-3">
                 {/* <p className="text-center pb-0">تشيزي بايتس</p>
                 <p className="text-center border-text">Cheesy Bites</p> */}
                 <li>
@@ -83,7 +83,7 @@ class AdminLayout extends React.Component{
                 {/* <p className="text-center pb-0">تشيزي بايتس</p>
                 <p className="text-center border-text">Cheesy Bites</p> */}
                 <li>
-                    <Link to="/dashboard" onClick={()=>{{this.setState({NavHeading:'Dashboard'})}}}> <i class="fas fa-home"></i> Dashboard</Link>
+                    <Link to="/dashboard" onClick={()=>{{this.setState({NavHeading:'Dashboard'})}}}> <i class='bx bxs-dashboard'></i> Dashboard</Link>
                 </li>
                 <li className="">
                     <a href="#orders" data-toggle="collapse" aria-expanded="false" className="dropdown-toggle"> <i class="fas fa-utensils"></i> Orders</a>
@@ -140,7 +140,7 @@ class AdminLayout extends React.Component{
             </ul>
             <ul className="list-unstyled CTAs text-center">
                 <li>
-                <h6 > Copyrights reserved © 2020-2021 Smart Chip Information Technology Corporation. Kingdom of Saudi Arabia.</h6>
+                {/* <h6 > Copyrights reserved © 2020-2021 Smart Chip Information Technology Corporation. Kingdom of Saudi Arabia.</h6> */}
                 </li>
             </ul>
         </nav>

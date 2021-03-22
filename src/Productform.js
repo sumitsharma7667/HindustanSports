@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "./style.css"
 import firebaseDb from "./firebase"
 import { storage } from "./firebase"
+import DataTable from '@bit/adeoy.utils.data-table';
 var imageurl = []
 const ProductForm = () => {
     const [data, setdata] = useState([])
@@ -11,6 +12,7 @@ const ProductForm = () => {
     const [image, Setimage] = useState([])
     const [description, setdescription] = useState()
     const [category, setcategory] = useState([])
+    const[brands,setbrands]=useState([])
     const [categoryid, setcategoryid] = useState()
     const [quentitiy, setquentitiy] = useState()
     const [regularprice, setregularprice] = useState()
@@ -19,11 +21,9 @@ const ProductForm = () => {
     useEffect(() => {
         getdata()
         getCategory()
-    }, [])
-  
+        getBrands()
+    },[])
     // const [imageurl,setimageurl]=useState()
-  
-  
     const imagedata = (e) => {
         for (var i = 0; i < e.target.files.length; i++) {
             var imagefile = e.target.files[i];
@@ -81,6 +81,15 @@ const ProductForm = () => {
             setcategory(tempdata)
         })
     }
+    const getBrands = () => {
+        firebaseDb.child("Brands").on("value", function (onSnapshot) {
+            let tempdata = []
+            onSnapshot.forEach(item => {
+            tempdata.push({ data: item.val(), key: item.key })
+            })
+            setbrands(tempdata)
+        })
+    }
     const getdata = () => {
         firebaseDb.child("Products").on("value", function (onSnapshot) {
             let tempdata = []
@@ -90,6 +99,21 @@ const ProductForm = () => {
             setdata(tempdata)
         })
     }
+    const tabledata = [];
+    {
+        data.map((item, index) => {
+
+            tabledata.push({ "sr_no": index + 1,"name": item.name, "description": item.description, "action": <p><button className="btn btn-secondary mr-2" onClick={() => this.editFoodObject(item)}><i class="fas fa-pencil-alt"></i></button><button className="btn btn-danger" onClick={() => this.deleteFood(item._id)}><i className="fa fa-trash" aria-hidden="true" ></i></button> </p> })
+
+        })
+    }
+    const columns = [
+        { title: "SR NO", data: "sr_no" },
+        { title: "Image", data: "image" },
+        { title: 'Name', data: "name" },
+        { title: 'Description', format: (row) => <em>{row.description}</em> },   
+        { title: "Action", data: "action" },
+    ];
     return (
         <>
             <form>
@@ -103,6 +127,7 @@ const ProductForm = () => {
                             <div class="col-md-6">
                                 <label>Product Category</label>
                                 <select onChange={(e) => { setcategoryid(e.target.value) }}>
+                                    <option>Choose Category</option>
                                     {category.map((el, ind) => {
                                         return (
                                             <option value={el.key}>{el.data.name}</option>
@@ -115,7 +140,15 @@ const ProductForm = () => {
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Product Brand</label>
-                                <input type="text" class="form-control" id="productName" name="productName" />
+                                <select onChange={(e) => { setcategoryid(e.target.value) }}>
+                                    <option>Choose Brands</option>
+                                    {brands.map((el, ind) => {
+                                        return (
+                                            <option value={el.key}>{el.data.name}</option>
+                                        )
+                                    })}
+
+                                </select>
                             </div>
                             <div class="col-md-6">
                                 <label>Product Quantity</label>
@@ -148,12 +181,24 @@ const ProductForm = () => {
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" onChange={(e) => { setdescription(e.target.value) }} ></textarea>
                             </div>
                             <div class="col-md-6 ProductSubmitBtn">
-                             <a class="btn btn-primary" href="#" onClick={() => { adddata() }}>Submit</a>
+                             <a class="btn btn-primary" onClick={()=>{adddata()}}>Submit</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </form>
+            <div className="row">
+                    <div className="col-12 tableDiv addfooftbale">
+                        <DataTable
+                            data={tabledata}
+                            columns={columns}
+                            striped={true}
+                            hover={true}
+                            responsive={true}
+                            // onClickRow={click}
+                        />
+                    </div>
+                </div>
         </>
     )
 }
