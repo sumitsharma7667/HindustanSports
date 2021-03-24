@@ -8,16 +8,18 @@ import DataTable from '@bit/adeoy.utils.data-table';
 var imageurl = []
 const ProductForm = () => {
     const [data, setdata] = useState([])
-    const [name, Setname] = useState()
+    const [name, Setname] = useState("")
     const [image, Setimage] = useState([])
     const [description, setdescription] = useState()
     const [category, setcategory] = useState([])
-    const[brands,setbrands]=useState([])
+    const [brands,setbrands]=useState([])
     const [categoryid, setcategoryid] = useState()
+    const [brandid, setbrandid] = useState()
     const [quentitiy, setquentitiy] = useState()
     const [regularprice, setregularprice] = useState()
     const [discountprice, setdiscountprice] = useState()
     const [saleprice, setsaleprice] = useState()
+    const[productid,setproductid]=useState()
     useEffect(() => {
         getdata()
         getCategory()
@@ -32,6 +34,7 @@ const ProductForm = () => {
         }
     }
     const HandleUpload = (imagefile) => {
+        imageurl=[]
         const uploadTask = storage.ref(`images/${imagefile.name}`).put(imagefile)
         uploadTask.on("state_changed",
             snapshot => { },
@@ -44,8 +47,7 @@ const ProductForm = () => {
                     .getDownloadURL()
                     .then(async (url) => {
                     await imageurl.push(url)
-                    })
-                  
+                    })                  
             }
         )
     }
@@ -56,13 +58,13 @@ const ProductForm = () => {
             name: name,
             description: description,
             categoryid: categoryid,
+            brandid:brandid,
             quentitiy: quentitiy,
             regularprice: regularprice,
             discountprice: discountprice,
             saleprice: saleprice,
             image:imageurl,                      
         }
-
         firebaseDb.child("Products").push(
             obj
             , err => {
@@ -76,7 +78,7 @@ const ProductForm = () => {
         firebaseDb.child("Catogery").on("value", function (onSnapshot) {
             let tempdata = []
             onSnapshot.forEach(item => {
-                tempdata.push({ data: item.val(), key: item.key })
+            tempdata.push({ data:item.val(),key:item.key})
             })
             setcategory(tempdata)
         })
@@ -94,23 +96,51 @@ const ProductForm = () => {
         firebaseDb.child("Products").on("value", function (onSnapshot) {
             let tempdata = []
             onSnapshot.forEach(item => {
-                tempdata.push(item.val())
+            tempdata.push({ data: item.val(), key: item.key })
             })
-            setdata(tempdata)
+        setdata(tempdata)
         })
+    }
+    const deleteproduct=(id)=>{
+    firebaseDb.child("Products/"+id).remove()       
+    }
+    const updateProduct=()=>{
+       var  obj={
+        name:name,
+        categoryid:categoryid,
+        brandid:brandid,
+        description:description,
+        image:imageurl,
+        regularprice:regularprice,
+        saleprice:saleprice,
+        discountprice:discountprice,
+        quentitiy:quentitiy
+       }
+        firebaseDb.child("Products/"+productid).update(obj) 
+    }
+    const editProduct=(data,key)=>{   
+        setproductid(key)    
+        Setname(data.name)
+        setdescription(data.description)    
+        imageurl=data.image
+        setcategoryid(data.categoryid)
+        setbrandid(data.brandid)
+        setregularprice(data.regularprice)
+        setsaleprice(data.saleprice)
+        setdiscountprice(data.discountprice)
+        setquentitiy(data.quentitiy)
     }
     const tabledata = [];
     {
-        data.map((item, index) => {
-
-            tabledata.push({ "sr_no": index + 1,"name": item.name, "description": item.description, "action": <p><button className="btn btn-secondary mr-2" onClick={() => this.editFoodObject(item)}><i class="fas fa-pencil-alt"></i></button><button className="btn btn-danger" onClick={() => this.deleteFood(item._id)}><i className="fa fa-trash" aria-hidden="true" ></i></button> </p> })
-
-        })
+    data.map((item, index) => {
+    tabledata.push({ "sr_no": index + 1,"name": item.data.name,"quentity":item.data.quentitiy, "description": item.data.description, "action": <p><button className="btn btn-secondary mr-2" onClick={() =>editProduct(item.data,item.key)}><i class="fas fa-pencil-alt"></i></button><button className="btn btn-danger" onClick={() =>deleteproduct(item.key)}><i className="fa fa-trash" aria-hidden="true" ></i></button> </p> })
+    })
     }
+
     const columns = [
-        { title: "SR NO", data: "sr_no" },
-        { title: "Image", data: "image" },
+        { title: "SR NO", data: "sr_no" },        
         { title: 'Name', data: "name" },
+        { title: "Quentity",data:"quentity"},
         { title: 'Description', format: (row) => <em>{row.description}</em> },   
         { title: "Action", data: "action" },
     ];
@@ -122,7 +152,7 @@ const ProductForm = () => {
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Product Name</label>
-                                <input type="text" class="form-control" id="productName" name="productName" onChange={(e) => { Setname(e.target.value) }} />
+                                <input type="text" class="form-control" id="productName" name="productName" defaultValue={name} onChange={(e) => { Setname(e.target.value) }} />
                             </div>
                             <div class="col-md-6">
                                 <label>Product Category</label>
@@ -140,7 +170,7 @@ const ProductForm = () => {
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Product Brand</label>
-                                <select onChange={(e) => { setcategoryid(e.target.value) }}>
+                                <select onChange={(e) => { setbrandid(e.target.value) }}>
                                     <option>Choose Brands</option>
                                     {brands.map((el, ind) => {
                                         return (
@@ -152,23 +182,23 @@ const ProductForm = () => {
                             </div>
                             <div class="col-md-6">
                                 <label>Product Quantity</label>
-                                <input type="text" class="form-control" id="productName" name="productName" onChange={(e) => { setquentitiy(e.target.value) }} />
+                                <input type="text" class="form-control" defaultValue={quentitiy} id="productName" name="productName" onChange={(e) => { setquentitiy(e.target.value) }}  />
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Product Regular Price</label>
-                                <input type="text" class="form-control" id="productName" name="productName" onChange={(e) => { setregularprice(e.target.value) }} />
+                                <input type="text" class="form-control" defaultValue={regularprice} id="productName" name="productName" onChange={(e) => { setregularprice(e.target.value) }} />
                             </div>
                             <div class="col-md-6">
                                 <label>Product Sale Price</label>
-                                <input type="text" class="form-control" id="productName" name="productName" onChange={(e) => { setsaleprice(e.target.value) }} />
+                                <input type="text" class="form-control" defaultValue={saleprice} id="productName" name="productName" onChange={(e) => { setsaleprice(e.target.value) }} />
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Product Discount Price</label>
-                                <input type="text" class="form-control" id="productName" name="productName" onChange={(e) => { setdiscountprice(e.target.value) }} />
+                                <input type="text" class="form-control" defaultValue={discountprice} id="productName" name="productName" onChange={(e) => { setdiscountprice(e.target.value) }} />
                             </div>
                             <div class="col-md-6 custom-file">
                                 <label class="custom-file-label mt-3 p-2" for="customFile" >Choose file</label>
@@ -178,10 +208,13 @@ const ProductForm = () => {
                         <div class="row mt-3">
                             <div class="col-md-6">
                                 <label>Product Description</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" onChange={(e) => { setdescription(e.target.value) }} ></textarea>
+                                <textarea class="form-control" defaultValue={description} id="exampleFormControlTextarea1" rows="3" onChange={(e) => { setdescription(e.target.value) }} ></textarea>
                             </div>
-                            <div class="col-md-6 ProductSubmitBtn">
+                            <div class="col-md-3 ProductSubmitBtn">
                              <a class="btn btn-primary" onClick={()=>{adddata()}}>Submit</a>
+                            </div>
+                            <div class="col-md-3 ProductSubmitBtn">
+                             <a class="btn btn-danger" onClick={()=>{updateProduct()}}>Update</a>
                             </div>
                         </div>
                     </div>

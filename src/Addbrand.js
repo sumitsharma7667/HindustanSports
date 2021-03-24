@@ -61,10 +61,14 @@ const getBrands = () => {
         setbrands(tempdata)
     })
 }
+const deleteBrands=(id)=>{
+    firebaseDb.child("Brands/"+id).remove()
+     
+  }
 const tabledata = [];
 {
     brands.map((item, index) => {
-        tabledata.push({ "sr_no": index + 1,"name":item.name, "description": item.description, "action": <p><button className="btn btn-secondary mr-2" onClick={() => this.editFoodObject(item)}><i class="fas fa-pencil-alt"></i></button><button className="btn btn-danger" onClick={() => this.deleteFood(item._id)}><i className="fa fa-trash" aria-hidden="true" ></i></button> </p> })
+        tabledata.push({ "sr_no": index + 1,"name":item.data.name, "description": item.data.description, "action": <p><button className="btn btn-secondary mr-2" onClick={() => this.editFoodObject(item)}><i class="fas fa-pencil-alt"></i></button><button className="btn btn-danger" onClick={() => deleteBrands(item.key)}><i className="fa fa-trash" aria-hidden="true" ></i></button> </p> })
     })
 }
 const columns = [

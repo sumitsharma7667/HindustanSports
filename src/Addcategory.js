@@ -41,11 +41,12 @@ const getdata = () => {
     firebaseDb.child("Catogery").on("value", function (onSnapshot) {
         let tempdata = []
         onSnapshot.forEach(item => {
-        tempdata.push(item.val())
+        tempdata.push({ data:item.val(),key:item.key})
         })
         setcategory(tempdata)
     })
 }
+
 const adddata = () => {
     //e.preventDefault()
 var obj={
@@ -65,7 +66,7 @@ image:imageurl
 const tabledata = [];
 {
     category.map((item, index) => {
-        tabledata.push({ "sr_no": index + 1,"name":item.name, "description": item.description, "action": <p><button className="btn btn-secondary mr-2" onClick={() => this.editFoodObject(item)}><i class="fas fa-pencil-alt"></i></button><button className="btn btn-danger" onClick={() => this.deleteFood(item._id)}><i className="fa fa-trash" aria-hidden="true" ></i></button> </p> })
+        tabledata.push({ "sr_no": index + 1,"name":item.data.name, "description": item.data.description, "action": <p><button className="btn btn-secondary mr-2" onClick={() => this.editFoodObject(item)}><i class="fas fa-pencil-alt"></i></button><button className="btn btn-danger" onClick={() => deleteCategory(item.key)}><i className="fa fa-trash" aria-hidden="true" ></i></button> </p> })
     })
 }
 const columns = [
@@ -75,6 +76,10 @@ const columns = [
     { title: 'Description', format: (row) => <em>{row.description}</em> },   
     { title: "Action", data: "action" },
 ];
+const deleteCategory=(id)=>{
+    firebaseDb.child("Catogery/"+id).remove()
+     
+  }
     return (
         <>
             <div class="container">
