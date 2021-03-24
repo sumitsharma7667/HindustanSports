@@ -13,12 +13,12 @@ const ProductForm = () => {
     const [description, setdescription] = useState()
     const [category, setcategory] = useState([])
     const [brands,setbrands]=useState([])
-    const [categoryid, setcategoryid] = useState()
-    const [brandid, setbrandid] = useState()
-    const [quentitiy, setquentitiy] = useState()
-    const [regularprice, setregularprice] = useState()
-    const [discountprice, setdiscountprice] = useState()
-    const [saleprice, setsaleprice] = useState()
+    const [categoryid, setcategoryid]=useState()
+    const [brandid, setbrandid]=useState()
+    const [quentitiy, setquentitiy]=useState()
+    const [regularprice, setregularprice]=useState()
+    const [discountprice, setdiscountprice]=useState()
+    const [saleprice, setsaleprice]=useState()
     const[productid,setproductid]=useState()
     useEffect(() => {
         getdata()
@@ -148,52 +148,106 @@ const ProductForm = () => {
         <>
             <form>
                 <div class="container formContaineP">
-                    <div class="card mt-2 p-3 form-group">
+                    <div class="card p-3 form-group">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label>Product Name</label>
                                 <input type="text" class="form-control" id="productName" name="productName" defaultValue={name} onChange={(e) => { Setname(e.target.value) }} />
                             </div>
-                            <div class="col-md-6">
-                                <label>Product Category</label>
-                                <select onChange={(e) => { setcategoryid(e.target.value) }}>
-                                    <option>Choose Category</option>
-                                    {category.map((el, ind) => {
-                                        return (
-                                            <option value={el.key}>{el.data.name}</option>
-                                        )
-                                    })}
-
-                                </select>
-                            </div>
+                           
+                            <div class = "col-md-4" >
+                                <label > Product Discount Price </label>
+                                <input type="text"
+                            class = "form-control"
+                            id = "productName"
+                            name = "productName"
+                            onChange = {
+                                (e) => {
+                                    setdiscountprice(e.target.value)
+                                }
+                            }
+                                /> </div>
+                             <div class = "col-md-4" >
+                                 <label > Product Quantity </label> <input type = "text" class = "form-control"
+                             id = "productName"
+                             name = "productName"
+                             onChange = {
+                                 (e) => {
+                                     setquentitiy(e.target.value)
+                                 }
+                             }
+                             />
+                              </div>
+                        </div>
+                         <div class = "row mt-4 mb-3" >
+                             <div class = "col-md-4 custom-file" >
+                             <input type = "file"
+                         multiple class = "custom-file-input form-control"
+                         id = "customFile"
+                         onChange = {
+                             (e) => {
+                                 imagedata(e)
+                             }
+                         }
+                         /> </div>
+                          <div class = "col-md-4" >
+                             
+                             < select class = "DropdownSele form-control"
+                             onChange = {
+                                 (e) => {
+                                     setcategoryid(e.target.value)
+                                 }
+                             } >
+                             
+                             <option > Choose Brands </option> {
+                         brands.map((el, ind) => {
+                             return ( < option value = {
+                                 el.key
+                             } > {
+                                 el.data.name
+                             } </option>)
+                         })
+                         } 
+                         </select>  
+                         </div> 
+                         <div class = "col-md-4" >
+                             < select class = "DropdownSele form-control"
+                             onChange = {
+                                 (e) => {
+                                     setcategoryid(e.target.value)
+                                 }
+                             } >
+                             <option > Choose Category </option> {
+                         category.map((el, ind) => {
+                             return ( < option value = {
+                                 el.key
+                             } > {
+                                 el.data.name
+                             } </option>)
+                         })
+                         }
+                          </select>  
+                         </div> 
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
-                                <label>Product Brand</label>
-                                <select onChange={(e) => { setbrandid(e.target.value) }}>
-                                    <option>Choose Brands</option>
-                                    {brands.map((el, ind) => {
-                                        return (
-                                            <option value={el.key}>{el.data.name}</option>
-                                        )
-                                    })}
-
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label>Product Quantity</label>
-                                <input type="text" class="form-control" defaultValue={quentitiy} id="productName" name="productName" onChange={(e) => { setquentitiy(e.target.value) }}  />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label>Product Regular Price</label>
                                 <input type="text" class="form-control" defaultValue={regularprice} id="productName" name="productName" onChange={(e) => { setregularprice(e.target.value) }} />
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label>Product Sale Price</label>
                                 <input type="text" class="form-control" defaultValue={saleprice} id="productName" name="productName" onChange={(e) => { setsaleprice(e.target.value) }} />
                             </div>
+                             < div class = "col-md-4" >
+                                 <label > Product Description </label> <textarea class = "form-control"
+                             id = "exampleFormControlTextarea1"
+                             rows = "3"
+                             onChange = {
+                                     (e) => {
+                                         setdescription(e.target.value)
+                                     }
+                                 } > </textarea>  
+                                 </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -221,6 +275,7 @@ const ProductForm = () => {
                 </div>
             </form>
             <div className="row">
+                <div class="card mt-4 p-4">
                     <div className="col-12 tableDiv addfooftbale">
                         <DataTable
                             data={tabledata}
@@ -230,6 +285,7 @@ const ProductForm = () => {
                             responsive={true}
                             // onClickRow={click}
                         />
+                    </div>
                     </div>
                 </div>
         </>

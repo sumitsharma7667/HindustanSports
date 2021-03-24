@@ -1,13 +1,18 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
 import $ from 'jquery';
+import firebaseDb from "./firebase"
 import "./style.css"
 const Home = () => {
     useEffect(() => {
+        getdata()
+        getCategory()
     }, [])
+    const [data, setdata] = useState([])
+    const [category, setcategory] = useState([])
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -27,484 +32,346 @@ const Home = () => {
             items: 1
         }
     };
-    return (
-        <>
-            <header>
-                <div className="container headercontainer">
-                <div className="row">
-                    <div className="col-2">
-                    <img src={require("./images/logo.png").default} className="logo" />
-                    </div>
-                    <div className="col-7 headersearchbar">
-                        <input type="text" placeholder="Search Here" className="searchbar"/>
-                        <i className="fas fa-search searchicon"></i>
-                    </div>
-                    <div className="col-3 headerbuttondiv">
-                        <div className="headerbutton"><p>Login</p></div>
-                        <div className="headerbutton"><p>Sign up</p></div>
-                    </div>
-                    
-                </div>
-                </div>
-            </header>
-            <div className="container-fluid">
-                <section>
-                    <div className="container section1">
+    const getCategory = () => {
+        firebaseDb.child("Catogery").on("value", function (onSnapshot) {
+            let tempdata = []
+            onSnapshot.forEach(item => {
+                tempdata.push({ data: item.val(), key: item.key })
+            })
+            setcategory(tempdata)
+        })
+    }
+    const getdata = async () => {
+        await firebaseDb.child("Products").on("value", function (onSnapshot) {
+            let tempdata = []
+            onSnapshot.forEach(item => {
+                tempdata.push({ data: item.val(), key: item.key })
+            })
+            setdata(tempdata)
+            // console.log(data[3].data.image[0])
+        })
+    }
+    if (data[0] !== undefined) {
+        return (
+
+            <>
+                <header>
+                    <div className="container-fluid headercontainer">
                         <div className="row">
-                            <div className="col-5 section1firstdiv">
-                                <img src={require("./images/portrait-handsome-male-tennis-player-celebrating-his-success-isolated-white-wall-human-emotions-winner-sport-victory-concept.jpg").default} className="player_image" />
+                            <div className="col-2 mt-2">
+                                <img src={require("./images/logo.png").default} className="logo" />
                             </div>
-                            <div className="col-7">
+                            <div className="col-md-6 navUlC">
+                                <ul className="navMenulist">
+                                    <li>Home/</li>
+                                    <li> Categories/</li>
+                                    <li> Best Sellers/</li>
+                                    <li> New Release/</li>
+                                    <li> Shop by Brand/</li>
+                                    <li> Featured</li>
+                                </ul>
+                            </div>
+                            <div className="col-md-4">
+                                <ul className="navMenulist">
+                                    <li>Login/Register</li>
+                                    <li>Wishlist</li>
+                                    <li><i class="fas fa-shopping-cart"></i>Cart</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <section class="card sectCard">
+                    <div className="container-fluid">
+                        <div className="row">
+                            <div className="col-md-2">
+                                <select className="form-control homeCategory" name="cars" id="cars">
+                                    <option value="">Categories</option>
+                                </select>
+                            </div>
+                            <div className="col-md-5 IconsSec">
                                 <div className="row">
-                                    <div className="col-6 section2div">
-                                        <div className="section2div2">
-                                            <img src={require("./images/CamouStroke.png").default} className="firststproduct" />
-                                        </div>
+                                    <div className="col-6">
+                                        <h5>Follow us on </h5>
                                     </div>
-                                    <div className="col-6 section2div">
-                                        <div className="section2div2">
-                                            <img src={require("./images/BX7E-02E_High_Large_TOP_2000x.png").default} className="firststproduct" />
-                                        </div>
+                                    <div className="col-6">
+                                        <i class="fab fa-twitter"></i>
+                                        <i class="fab fa-facebook"></i>
+                                        <i class="fab fa-instagram"></i>
                                     </div>
                                 </div>
-                                <div className="row">
-                                    <div className="col-6 section2div">
-                                        <div className="section2div2">
-                                            <img src={require("./images/Parts-of-a-tennis-racket.png").default} className="firststproduct" />
-                                        </div>
-                                    </div>
-                                    <div className="col-6 section2div">
-                                        <div className="section2div2">
-                                            <img src={require("./images/S150C_2000x.png").default} className="firststproduct" />
-                                        </div>
-                                    </div>
+                            </div>
+                            <div className="col-md-5">
+                                <div>
+                                    <input type="text" placeholder="Search.." name="search" />
+                                    <button type="submit"><i class="fa fa-search"></i></button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                {/* first section closed */}
-                <section  className="section2">
-                    <h1 className="text-center">Categories</h1>
+                <section className="imagesSect mt-3">
                     <div className="container">
-                        <Carousel responsive={responsive}>
-                            <div className="Carousel">
-                                <div className="crouseldiv">
-                                    <img src={require("./images/cricket.jpg").default} className="crouselimg" />
-                                </div>
-                                {/* <div className="coruslediv2">
-                                    <h4>Cricket</h4>
-                                </div> */}
+                        <div className="row">
+                            <div className="col-md-6 ImagesClas">
+                                <img src={data[3].data.image[0]} className="" />
                             </div>
-                            <div className="Carousel">
-                                <div className="crouseldiv">
-                                    <img src={require("./images/side-view-woman-man-playing-beach-volleyball.jpg").default} className="crouselimg" />
+                            <div className="col-md-6">
+                                <div className="row">
+                                    <div className="col-md-6 ImagesClas">
+                                        <img src={data[4].data.image[0]} className="MaskGroup" />
+                                    </div>
+                                    <div className="col-md-6 ImagesClas">
+                                        <img src={data[3].data.image[1]} className="MaskGroup" />
+                                    </div>
                                 </div>
-                                {/* <div className="coruslediv2">
-                                    <h4>Volleyball</h4>
-                                </div> */}
+                                <div className="row">
+                                    <div className="col-md-6 ImagesClas">
+                                        <img src={data[3].data.image[2]} className="MaskGroup" />
+                                    </div>
+                                    <div className="col-md-6 ImagesClas">
+                                        <img src={data[4].data.image[0]} className="MaskGroup" />
+                                    </div>
+                                </div>
                             </div>
-                            <div className="Carousel">
-                                <div className="crouseldiv">
-                                    <img src={require("./images/young-couple-playing-tennis-court.jpg").default} className="crouselimg" />
-                                </div>
-                                {/* <div className="coruslediv2">
-                                    <h4>Tennis</h4>
-                                </div> */}
+                        </div>
+                        <div className="row">
+                            <div className="col-3 ImagesClas">
+                                <img src={require("./images/cricketer.png").default} className="MaskGroup" />
                             </div>
-                            <div className="Carousel">
-                                <div className="crouseldiv">
-                                    <img src={require("./images/young-basketball-player-team-wearing-sportwear-training-practicing-action-motion-isolated-blue-background-neon-light-concept-sport-movement-energy-dynamic-healthy-lifestyle.jpg").default} className="crouselimg" />
-                                </div>
-                                {/* <div className="coruslediv2">
-                                    <h4>Basketball</h4>
-                                </div> */}
-                            </div>  
-                            <div className="Carousel">
-                                <div className="crouseldiv">
-                                    <img src={require("./images/young-woman-playing-badminton-gym.jpg").default} className="crouselimg" />
-                                </div>
-                                {/* <div className="coruslediv2">
-                                    <h4>Badminton</h4>
-                                </div> */}
+                            <div className="col-3 ImagesClas">
+                                <img src={require("./images/kit.jpg").default} className="MaskGroup" />
                             </div>
-                            <div className="Carousel">
-                                <div className="crouseldiv">
-                                    <img src={require("./images/add.jpg").default} className="crouselimg" />
-                                </div>
-                                {/* <div className="coruslediv2">
-                                    <h4>Cricket</h4>
-                                </div> */}
+                            <div className="col-6 lastCol ImagesClas">
+                                <img src={require("./images/18-SM268387.jpg").default} className="lastCol" />
                             </div>
-                            <div className="Carousel">
-                                <div className="crouseldiv">
-                                    <img src={require("./images/add.jpg").default} className="crouselimg" />
-                                </div>
-                                {/* <div className="coruslediv2">
-                                    <h4>Cricket</h4>
-                                </div> */}
-                            </div>
-                            <div className="Carousel">
-                                <div className="crouseldiv">
-                                    <img src={require("./images/add.jpg").default} className="crouselimg" />
-                                </div>
-                                {/* <div className="coruslediv2">
-                                    <h4>Cricket</h4>
-                                </div> */}
-                            </div>
-                        </Carousel>
+                        </div>
                     </div>
+                </section >
+                <section className=" thirdSec mt-5">
+                    <div className="headCat"><h4>Categories</h4></div>
 
+                    <hr />
+                    <div className="container">
+                        <div className="row">
+                            {
+                                category.map((el,ind)=>{
+                                    console.log(data[ind].data,"is here")
+                                    return(
+                                    <div className="col-2 card p-2 sectBody">                                        
+                                            <img  src={data[ind].data.image} className="CategoriesIcon" />:                                        
+                                        <h3 className="mt-3 cardt">{data[ind].data.name}</h3>
+                                    </div>
+                                    )
+                                })
+                            }
+                            {/* <div className="col-2 card p-2 sectBody">
+                                <img src={require("./images/badminton.png").default} className="CategoriesIcon" />
+                                <h3 className="mt-3 cardt">Badminton</h3>
+                            </div>
+                            <div className="col-2 card p-2 sectBody">
+                                <img src={require("./images/basketball-2062459-1740039.png").default} className="CategoriesIcon" />
+                                <h3 className="mt-3 cardt">Badminton</h3>
+                            </div>
+                            <div className="col-2 card p-2 sectBody">
+                                <img src={require("./images/football-game.png").default} className="CategoriesIcon" />
+                                <h3 className="mt-3 cardt">Badminton</h3>
+                            </div>
+                            <div className="col-2 card p-2 sectBody">
+                                <img src={require("./images/40678-200.png").default} className="CategoriesIcon" />
+                                <h3 className="mt-3 cardt">Badminton</h3>
+                            </div>
+                            <div className="col-2 card p-2 sectBody">
+                                <img src={require("./images/768px-Volleyball_icon_by_Arthur_Shlain.png").default} className="CategoriesIcon" />
+                                <h3 className="mt-3 cardt">Badminton</h3>
+                            </div>
+                            <div className="col-2 card p-2 sectBody">
+                                <img src={require("./images/207546-200.png").default} className="CategoriesIcon" />
+                                <h3 className="mt-3 cardt">Badminton</h3>
+                            </div> */}
+                        </div>
+                    </div>
                 </section>
-                
-            </div >
-            <section  className="sectionthird">
-                <div className="container" className="sectionthird2">
-                    <h2>Featured products</h2>
-                    <div className="row thirdsectionrow">
-                        <div className="box1">
-                            <div className="box1div1" >
-                                <img src={require("./images/add.jpg").default} /></div>
-                            <div className="box1div2">
-                                <div className="box1div3">
-                                    <p>Very good basketball                                  
-                                    </p>
-                                    <p className="d-flex">   <img src={require("./images/star.png").default} />
-                                       <s><h6>999</h6></s>
-                                        <h5>616</h5></p>
-                                    <div className="box1div4" > 
-                                        <h5>Buy Now</h5>
-                                    </div>
-                                    <div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div className="box1">
-                            <div className="box1div1" >
-                                <img src={require("./images/Platinum_LE__03806.1550863432.jpg").default} /></div>
-                            <div className="box1div2">
-                                <div className="box1div3">
-                                    <p>Very good basketball
-                                     <img src={require("./images/star.png").default} />
-                                        <h4>616</h4>
-                                    </p>
-                                    <div className="box1div4" >
-                                        <h5>Buy Now</h5>
-                                    </div>
-                                    <div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div className="box1">
-                            <div className="box1div1" >
-                                <img src={require("./images/Loki-Stiga-Table-Tennis-Racket-Custom-Logo-Best-Table-Tennis-Racket-for-Spin-and-Control-with-Ball.jpg").default} /></div>
-                            <div className="box1div2">
-                                <div className="box1div3">
-                                    <p>Very good basketball
-                                     <img src={require("./images/star.png").default} />
-                                        <h4>616</h4>
-                                    </p>
-                                    <div className="box1div4" >
-                                        <h5>Buy Now</h5>
-                                    </div>
-                                    <div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div className="box1">
-                            <div className="box1div1" >
-                                <img src={require("./images/Parts-of-a-tennis-racket (1).png").default} /></div>
-                            <div className="box1div2">
-                                <div className="box1div3">
-                                    <p>Very good basketball
-                                     <img src={require("./images/star.png").default} />
-                                        <h4>616</h4>
-                                    </p>
-                                    <div className="box1div4" >
-                                        <h5>Buy Now</h5>
-                                    </div>
-                                    <div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div className="box1">
-                            <div className="box1div1" >
-                                <img src={require("./images/S150C_2000x (1).png").default} /></div>
-                            <div className="box1div2">
-                                <div className="box1div3">
-                                    <p>Very good basketball
-                                     <img src={require("./images/star.png").default} />
-                                        <h4>616</h4>
-                                    </p>
-                                    <div className="box1div4" >
-                                        <h5>Buy Now</h5>
-                                    </div>
-                                    <div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div className="box1">
-                            <div className="box1div1" >
-                                <img src={require("./images/Setia-International-Player-Edition-Pro-Star-Kit-Bag_-Cover.jpeg").default} /></div>
-                            <div className="box1div2">
-                                <div className="box1div3">
-                                    <p>Very good basketball
-                                     <img src={require("./images/star.png").default} />
-                                        <h4>616</h4>
-                                    </p>
-                                    <div className="box1div4" >
-                                        <h5>Buy Now</h5>
-                                    </div>
-                                    <div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div className="box1">
-                            <div className="box1div1" >
-                                <img src={require("./images/yonex-badminton-racket-500x500.jpg").default} /></div>
-                            <div className="box1div2">
-                                <div className="box1div3">
-                                    <p>Very good basketball
-                                     <img src={require("./images/star.png").default} />
-                                        <h4>616</h4>
-                                    </p>
-                                    <div className="box1div4" >
-                                        <h5>Buy Now</h5>
-                                    </div>
-                                    <div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div className="box1">
-                            <div className="box1div1" >
-                                <img src={require("./images/young-basketball-player-team-wearing-sportwear-training-practicing-action-motion-isolated-blue-background-neon-light-concept-sport-movement-energy-dynamic-healthy-lifestyle.jpg").default} /></div>
-                            <div className="box1div2">
-                                <div className="box1div3">
-                                    <p>Very good basketball
-                                     <img src={require("./images/star.png").default} />
-                                        <h4>616</h4>
-                                    </p>
-                                    <div className="box1div4" >
-                                        <h5>Buy Now</h5>
-                                    </div>
-                                    <div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div className="box1">
-                            <div className="box1div1" >
-                                <img src={require("./images/young-couple-playing-tennis-court.jpg").default} /></div>
-                            <div className="box1div2">
-                                <div className="box1div3">
-                                    <p>Very good basketball
-                                     <img src={require("./images/star.png").default} />
-                                        <h4>616</h4>
-                                    </p>
-                                    <div className="box1div4" >
-                                        <h5>Buy Now</h5>
-                                    </div>
-                                    <div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div className="box1">
-                            <div className="box1div1" >
-                                <img src={require("./images/young-woman-playing-badminton-gym.jpg").default} /></div>
-                            <div className="box1div2">
-                                <div className="box1div3">
-                                    <p>Very good basketball
-                                     <img src={require("./images/star.png").default} />
-                                        <h4>616</h4>
-                                    </p>
-                                    <div className="box1div4" >
-                                        <h5>Buy Now</h5>
-                                    </div>
-                                    <div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div className="box1">
-                            <div className="box1div1" >
-                                <img src={require("./images/side-view-woman-man-playing-beach-volleyball.jpg").default} /></div>
-                            <div className="box1div2">
-                                <div className="box1div3">
-                                    <p>Very good basketball
-                                     <img src={require("./images/star.png").default} />
-                                        <h4>616</h4>
-                                    </p>
-                                    <div className="box1div4" >
-                                        <h5>Buy Now</h5>
-                                    </div>
-                                    <div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div className="box1">
-                            <div className="box1div1" >
-                                <img src={require("./images/4d3ea737ec4bcf81fee180920c757472.jpg").default} /></div>
-                            <div className="box1div2">
-                                <div className="box1div3">
-                                    <p>Very good basketball
-                                     <img src={require("./images/star.png").default} />
-                                        <h4>616</h4>
-                                    </p>
-                                    <div className="box1div4" >
-                                        <h5>Buy Now</h5>
-                                    </div>
-                                    <div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div><div className="box1">
-                            <div className="box1div1" >
-                                <img src={require("./images/81aroXnM5lL._SX355_.jpg").default} /></div>
-                            <div className="box1div2">
-                                <div className="box1div3">
-                                    <p>Very good basketball
-                                     <img src={require("./images/star.png").default} />
-                                        <h4>616</h4>
-                                    </p>
-                                    <div className="box1div4" >
-                                        <h5>Buy Now</h5>
-                                    </div>
-                                    <div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div><div className="box1">
-                            <div className="box1div1" >
-                                <img src={require("./images/football.jpg").default} /></div>
-                            <div className="box1div2">
-                                <div className="box1div3">
-                                    <p>Very good basketball
-                                     <img src={require("./images/star.png").default} />
-                                        <h4>616</h4>
-                                    </p>
-                                    <div className="box1div4" >
-                                        <h5>Buy Now</h5>
-                                    </div>
-                                    <div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div><div className="box1">
-                            <div className="box1div1" >
-                                <img src={require("./images/add.jpg").default} /></div>
-                            <div className="box1div2">
-                                <div className="box1div3">
-                                    <p>Very good basketball
-                                     <img src={require("./images/star.png").default} />
-                                        <h4>616</h4>
-                                    </p>
-                                    <div className="box1div4" >
-                                        <h5>Buy Now</h5>
-                                    </div>
-                                    <div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            {/* footer section */}
-            <section className="footer">
+                <div className="headCat mt-3"><h4>FEATURED</h4></div>
                 <div className="container">
-                    <div className="row">
-                        <div className="col-3 pt-5">
-                            <h3 className="text-center">About Us </h3>
-                            <p className="text-center">Who we are Hindustan Sports In dehradun.
-                             Deal with branded product in lower cost. </p>
+                    <div className="row mt-5">
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
                         </div>
-                        <div className="col-3 pt-5">
-                            <h3 className="text-center"> Support </h3>
-                            <p className="text-center">Who we are Hindustan Sports In dehradun.
-                            Deal with branded product in lower cost. </p>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
                         </div>
-                        <div className="col-3 pt-5">
-                            <h3 className="text-center"> Legel </h3>
-                            <p className="text-center">Who we are Hindustan Sports In dehradun.
-                            Deal with branded product in lower cost. </p>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
                         </div>
-                        <div className="col-3 pt-5">
-                            <h3 className="text-center">Contact with us </h3>
-                            <p className="text-center">Who we are Hindustan Sports In dehradun.
-                            Deal with branded product in lower cost. </p>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div className="row">                        
-                        <div className="col-3 pt-5">
-                            <h3 className="text-center">Address </h3>
-                            <p className="text-center">22, Machhi Bazar, Connaught Place, Dehradun, Uttarakhand 248001</p>                       
-                        </div>
-                        <div className="col-9 footerimage" >
-                            <div className="col-2">
-                            <img src={require("./images/image-9.png").default} />
-                            </div>
-                              <div className="col-2">
-                            <img src={require("./images/image-11.png").default} />
-                            </div>
-                              <div className="col-2">
-                            <img src={require("./images/image-12.png").default} />
-                            </div>
-                              <div className="col-2">
-                            <img src={require("./images/image-13.png").default} />
-                            </div>
-                              <div className="col-2">
-                            <img src={require("./images/image-8.png").default} />
-                            </div>
-                              <div className="col-2">
-                            <img src={require("./images/image-10.png").default} />
-                            </div>
-                              <div className="col-2">
-                            <img src={require("./images/image-15.png").default} />
-                            </div>
-                        </div>                       
                     </div>
                 </div>
-            </section>
-        </>
-    )
+                <hr />
+                <div className="container">
+                    <div className="row mt-5">
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div className="headCat mt-3"><h4>Recently viewed</h4></div>
+                <div className="container">
+                    <div className="row mt-5">
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </>
+        )
+    }
+    else {
+        return (
+            <>
+            </>
+        )
+    }
 }
 export default Home

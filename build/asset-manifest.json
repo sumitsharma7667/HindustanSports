@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "/static/css/main.dab06507.chunk.css",
+    "main.js": "/static/js/main.14d106cf.chunk.js",
+    "main.js.map": "/static/js/main.14d106cf.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.237fb50a.js",
+    "runtime-main.js.map": "/static/js/runtime-main.237fb50a.js.map",
+    "static/css/2.81198f32.chunk.css": "/static/css/2.81198f32.chunk.css",
+    "static/js/2.2fd3c183.chunk.js": "/static/js/2.2fd3c183.chunk.js",
+    "static/js/2.2fd3c183.chunk.js.map": "/static/js/2.2fd3c183.chunk.js.map",
+    "static/js/3.23b5b94f.chunk.js": "/static/js/3.23b5b94f.chunk.js",
+    "static/js/3.23b5b94f.chunk.js.map": "/static/js/3.23b5b94f.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.81198f32.chunk.css.map": "/static/css/2.81198f32.chunk.css.map",
+    "static/css/main.dab06507.chunk.css.map": "/static/css/main.dab06507.chunk.css.map",
+    "static/js/2.2fd3c183.chunk.js.LICENSE.txt": "/static/js/2.2fd3c183.chunk.js.LICENSE.txt",
+    "static/media/18-SM268387.jpg": "/static/media/18-SM268387.a395928d.jpg",
+    "static/media/S150C_2000x (1).png": "/static/media/S150C_2000x (1).1f56f567.png",
+    "static/media/cricketer.png": "/static/media/cricketer.d3b996ba.png",
+    "static/media/image-11.png": "/static/media/image-11.970c84a2.png",
+    "static/media/image-8.png": "/static/media/image-8.9d230a11.png",
+    "static/media/image-9.png": "/static/media/image-9.db6d1ea2.png",
+    "static/media/kit.jpg": "/static/media/kit.05edbc2f.jpg",
+    "static/media/logo.png": "/static/media/logo.2a59d227.png",
+    "static/media/logo.6ce24c58.svg": "/static/media/logo.6ce24c58.svg",
+    "static/media/styles.css": "/static/media/revicons.e8746a62.woff",
+    "static/media/side-view-woman-man-playing-beach-volleyball.jpg": "/static/media/side-view-woman-man-playing-beach-volleyball.91c77147.jpg",
+    "static/media/sort-asc.svg": "/static/media/sort-asc.163cf422.svg",
+    "static/media/sort-desc.svg": "/static/media/sort-desc.b5dc6e33.svg",
+    "static/media/unsorted.svg": "/static/media/unsorted.cda97ee9.svg",
+    "static/media/yonex-badminton-racket-500x500.jpg": "/static/media/yonex-badminton-racket-500x500.62453093.jpg",
+    "static/media/young-basketball-player-team-wearing-sportwear-training-practicing-action-motion-isolated-blue-background-neon-light-concept-sport-movement-energy-dynamic-healthy-lifestyle.jpg": "/static/media/young-basketball-player-team-wearing-sportwear-training-practicing-action-motion-isolated-blue-background-neon-light-concept-sport-movement-energy-dynamic-healthy-lifestyle.68603725.jpg",
+    "static/media/young-couple-playing-tennis-court.jpg": "/static/media/young-couple-playing-tennis-court.a7c0d9b6.jpg",
+    "static/media/young-woman-playing-badminton-gym.jpg": "/static/media/young-woman-playing-badminton-gym.1f9f8034.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.237fb50a.js",
+    "static/css/2.81198f32.chunk.css",
+    "static/js/2.2fd3c183.chunk.js",
+    "static/css/main.dab06507.chunk.css",
+    "static/js/main.14d106cf.chunk.js"
+  ]
+}
