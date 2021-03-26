@@ -170,7 +170,7 @@ const Home = () => {
                             <div className="col-3  ">
                                 <img src={require("./images/kit.jpg").default} className="w-100  mb-4 ImagesClas" />
                             </div>
-                            <div className="col-6 lastCol   ">
+                            <div className="col-6 lastCol">
                                 <img src={require("./images/18-SM268387.jpg").default} className="w-100  mb-4 ImagesClas imgClas" />
                             </div>
                         </div>
