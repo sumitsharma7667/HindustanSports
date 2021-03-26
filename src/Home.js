@@ -10,7 +10,7 @@ const Home = () => {
     useEffect(() => {
         getdata()
         getCategory()
-    }, [])
+    },[])
     const [data, setdata] = useState([])
     const [category, setcategory] = useState([])
     const responsive = {
@@ -54,7 +54,6 @@ const Home = () => {
     
     if (data[0] !== undefined) {
         return (
-
             <>
                 <header>
                     <div className="container-fluid headercontainer">
@@ -141,24 +140,24 @@ const Home = () => {
                 <section className="imagesSect mt-3">
                     <div className="container">
                         <div className="row imageRow">
-                            <div className="col-md-6   ">
-                                <img src={data[3].data.image[0]} className="w-100  mb-4 firstrowImg"/>
+                            <div className="col-md-6">
+                                <img src={data[1].data.image[0]} className="w-100  mb-4 firstrowImg"/>
                             </div>
                             <div className="col-md-6 colSixsec">
                                 <div className="row seconRow">
-                                    <div className="col-md-6  ">
-                                        <img src={data[4].data.image[0]} className="w-100 s mb-4 firstrowImg imgClas" />
+                                    <div className="col-md-6">
+                                        <img src={data[2].data.image[0]} className="w-100 s mb-4 firstrowImg imgClas" />
                                     </div>
                                     <div className="col-md-6  ">
-                                        <img src={data[3].data.image[1]} className="  mb-4 firstrowImg imgClasSec" />
+                                        <img src={data[2].data.image[1]} className="  mb-4 firstrowImg imgClasSec" />
                                     </div>
                                      </div>
                                 <div className="row seconRow">
                                     <div className="col-md-6  ">
-                                        <img src={data[3].data.image[2]} className="w-100  mb-4 firstrowImg imgClas" />
+                                        <img src={data[3].data.image[0]} className="w-100  mb-4 firstrowImg imgClas" />
                                     </div>
                                     <div className="col-md-6 ">
-                                        <img src={data[4].data.image[0]} className=" mb-4 firstrowImg imgClasSec" />
+                                        <img src={data[3].data.image[1]} className=" mb-4 firstrowImg imgClasSec" />
                                     </div>
                                 </div>
                             </div>
@@ -223,10 +222,15 @@ const Home = () => {
                 <div className="headCat mt-3"><h4>FEATURED</h4></div>
                 <div className="container">
                     <div className="row mt-5">
-                        <div className="col-md-3">
+                        {
+                            data.map((el,ind)=>{
+                                if(data[ind].data.producttype=="featured"&&ind<=7){
+                             return(
+                            <div className="col-md-3">
                             <div class="card cardPrice">
                                 <div class="imgbx">
-                                    <img src={require("./images/207546-200.png").default} className="" />
+                                <img src={data[ind].data.image[0]} className=""/>
+                                    {/* <img src={require("./images/207546-200.png").default} className="" /> */}
                                     {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
                                 </div>
                                 <div class="contentBx">
@@ -236,45 +240,10 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-3">
-                            <div class="card cardPrice">
-                                <div class="imgbx">
-                                    <img src={require("./images/207546-200.png").default} className="" />
-                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
-                                </div>
-                                <div class="contentBx">
-                                    <h3>lethered Basketball</h3>
-                                    <h2 class="price">$20.<small>99</small></h2>
-                                    <a href="#" class="buyNow">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div class="card cardPrice">
-                                <div class="imgbx">
-                                    <img src={require("./images/207546-200.png").default} className="" />
-                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
-                                </div>
-                                <div class="contentBx">
-                                    <h3>lethered Basketball</h3>
-                                    <h2 class="price">$20.<small>99</small></h2>
-                                    <a href="#" class="buyNow">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div class="card cardPrice">
-                                <div class="imgbx">
-                                    <img src={require("./images/207546-200.png").default} className="" />
-                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
-                                </div>
-                                <div class="contentBx">
-                                    <h3>lethered Basketball</h3>
-                                    <h2 class="price">$20.<small>99</small></h2>
-                                    <a href="#" class="buyNow">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
+                             )  
+                                } 
+                            })
+                        }                                                                
                     </div>
                 </div>
                 <div className="container">
