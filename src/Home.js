@@ -219,14 +219,14 @@ const Home = () => {
                         </div>
                     </div>
                 </section>
-                <div className="headCat mt-3"><h4>FEATURED</h4></div>
+                <div className="headCat mt-4"><h4>FEATURED</h4></div>
                 <div className="container mb-3">
                     <div className="row mt-5">
                         {
                             data.map((el,ind)=>{
                                 if(data[ind].data.producttype=="featured"&&ind<=7){
                              return(
-                            <div className="col-md-3">
+                            <div className="col-md-3 mt-4">
                             <div class="card cardPrice">
                                 <div class="imgbx">
                                 <img src={data[ind].data.image[0]} className=""/>
@@ -247,7 +247,8 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="container">
-                    <div className="row mt-5">
+                    <div className="row mt-3">
+                        <h1>hiui</h1>
                         <div className="col-md-3">
                             <div class="card cardPrice">
                                 <div class="imgbx">

@@ -147,6 +147,7 @@ overflow-x: hidden;
 .cardPrice .imgbx img {
     max-width: 100%;
     transition: 0.5s;
+    object-fit: contain;
 }
 .cardPrice:hover .imgbx img
 {
