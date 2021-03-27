@@ -20,6 +20,7 @@ const ProductForm = () => {
     const [discountprice, setdiscountprice]=useState()
     const [saleprice, setsaleprice]=useState()
     const[productid,setproductid]=useState()
+    const[producttype,setproducttype]=useState()
     useEffect(() => {
         getdata()
         getCategory()
@@ -63,7 +64,8 @@ const ProductForm = () => {
             regularprice: regularprice,
             discountprice: discountprice,
             saleprice: saleprice,
-            image:imageurl,                      
+            image:imageurl, 
+            producttype:producttype                     
         }
         firebaseDb.child("Products").push(
             obj
@@ -180,22 +182,13 @@ const ProductForm = () => {
                               </div>
                         </div>
                          <div class = "row mt-4 mb-3" >
-                             <div class = "col-md-4 custom-file" >
-                             <input type = "file"
-                         multiple class = "custom-file-input form-control"
-                         id = "customFile"
-                         onChange = {
-                             (e) => {
-                                 imagedata(e)
-                             }
-                         }
-                         /> </div>
+                   
                           <div class = "col-md-4" >
                              
                              < select class = "DropdownSele form-control"
                              onChange = {
-                                 (e) => {
-                                     setcategoryid(e.target.value)
+                                 (e) => {                                    
+                                    setbrandid(e.target.value)
                                  }
                              } >
                              
@@ -238,15 +231,13 @@ const ProductForm = () => {
                                 <label>Product Sale Price</label>
                                 <input type="text" class="form-control" defaultValue={saleprice} id="productName" name="productName" onChange={(e) => { setsaleprice(e.target.value) }} />
                             </div>
-                             < div class = "col-md-4" >
-                                 <label > Product Description </label> <textarea class = "form-control"
-                             id = "exampleFormControlTextarea1"
-                             rows = "3"
-                             onChange = {
-                                     (e) => {
-                                         setdescription(e.target.value)
-                                     }
-                                 } > </textarea>  
+                             <div className = "col-md-4" >
+                                 <select onChange={(e)=>{setproducttype(e.target.value)}}>
+                                 <option value="featured">Product Type</option>
+                                     <option value="featured">Featured</option>
+                                     <option value="popular">Popular</option>
+                                     {/* <option value="fetured">Fetured</option> */}
+                                 </select>
                                  </div>
                         </div>
                         <div class="row">
