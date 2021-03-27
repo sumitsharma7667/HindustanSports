@@ -203,7 +203,6 @@ const Cart = () => {
                             </div>
                         <div className="col-6 card">
                             <div className="card-body">
-                                <h4>Product Description</h4>
                                 <p>FASTER BRANDING: INSPIRED BY THE WINGS OF THE PEREGRINE FALCON IN ATTACK MODE . THE BRANDING FEATURES A FADE FROM PRECISION TO BLUR - THERE ONE SECOND AND GONE THE NEXT. SPRINT SPIKE SILHOUETTE: NO NEED TO GET READY YOU CAN JUST GO. THE NEWLY ENGINEERED LAST WITH A SLIGHT TOE SPRING PUTS YOU IN A SPRINTER STANCE. NEW STUD CONFIGURATION IS OPTIMIZED FOR ACCELERATION</p>
                             </div>
                 </div>

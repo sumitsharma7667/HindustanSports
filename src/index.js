@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
 import { createBrowserHistory } from "history";
 import Home from "./Home"
 import Singleproduct from './Singleproduct';
+import LoginPage from "./container/LoginPage"
 import about from './About'
 import {MyContextprovider} from "./Context"
 import AdminLayout from "./AdminLayout"
@@ -34,6 +35,7 @@ ReactDOM.render(
         <Route path="/Singleproduct"component={Singleproduct}/>
         <Route path="/about" component={about} />
         <Route path="/Cart" component={Cart} />
+        <Route path="/login" component={LoginPage}/>
         </MyContextprovider>
         <Route path="/">
         <Home/>
