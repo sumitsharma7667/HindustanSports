@@ -146,7 +146,7 @@ const Home = () => {
                             <div className="col-md-6 colSixsec">
                                 <div className="row seconRow">
                                     <div className="col-md-6">
-                                        <img src={data[2].data.image[0]} className="w-100 s mb-4 firstrowImg imgClas" />
+                                        <img src={data[2].data.image[0]} className="w-100 s mb-4 firstrowImg imgClas firstImgSec" />
                                     </div>
                                     <div className="col-md-6  ">
                                         <img src={data[2].data.image[1]} className="  mb-4 firstrowImg imgClasSec" />
