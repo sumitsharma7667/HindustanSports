@@ -221,7 +221,7 @@ const Home = () => {
                     </div>
                 </section>
                 <div className="headCat mt-3"><h4>FEATURED</h4></div>
-                <div className="container">
+                <div className="container mb-3">
                     <div className="row mt-5">
                         <div className="col-md-3">
                             <div class="card cardPrice">

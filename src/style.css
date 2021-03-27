@@ -594,7 +594,7 @@ color: #fff;
 }
 .btn-primary{
     width: 100%;
-    background: #fff  !important;
+    background: #2fc1df !important;
     color: #000;
     box-shadow: 0px 2px 6px 1px;
      border: none !important;
@@ -607,4 +607,21 @@ color: #fff;
 }
 .detailRow{
     text-align: center;
+}
+.productDetails{
+    display: flex;
+}
+.itemTitle{
+    font-weight: bold;
+    font-size: 20px;
+}
+.itemDescrip{
+    font-size: 20px;
+}
+.card-body{
+    padding: 2rem 5rem  !important
+}
+.selectValue{
+    width: 20vh;
+    border-radius: 5px;
 }
