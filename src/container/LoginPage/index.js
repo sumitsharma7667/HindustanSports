@@ -11,22 +11,37 @@ class LoginPage extends Component {
                            <img src={require("../../images/bgimg.jpg").default} className="loginImg" />
                         </div>
                         <div className="col-4">
-                            <div className="row">
-                                <div className="col-4">
+                            <div className="loginForm">
+                            <div className="row headingLog">
+                                <div className="col-12">
                                    <h3>Welcome</h3>
                                     <h4>Login</h4>
                                 </div>
-                                <div className="col-4">
+                            </div>
+                            <div className="row">
+                                <div className="col-12">
                                     <label>Email</label>
-                                    <input type="text" className="form-control" />
+                                    <input type="text" className="form-control inputLog" />
                                      <label>Password</label>
-                                    <input type="text" className="form-control" />
+                                    <input type="text" className="form-control inputLog" />
+                                     </div>
+                                <div className="row mt-3">
+                                    <div className=" col-6">
                                     <input type="checkbox" id="" name="" value=""/>
-                                    <label for="vehicle1">Remember me </label>
-                                    <h6>Forget Password?</h6>
+                                        <label for="vehicle1">Remember me </label>
+                                    </div>
+                                    <div className="col-6 fogetLog">
+                                        <h6>Forget Password?</h6>
+                                       </div>
                                 </div>
                             </div>
-                        </div>
+                            <div className="row mt-3">
+                                <div className="col-12">
+                                    <button className="btn btn-primary">Login</button>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
                     </div>
                 </div>
             </React.Fragment>

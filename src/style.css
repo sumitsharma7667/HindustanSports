@@ -636,3 +636,16 @@ color: #fff;
 .colElog{
     padding-left: 0px !important;
 }
+.inputLog{
+    width: 100%;
+}
+.headingLog{
+    text-align: center;
+}
+.loginForm{
+    margin-top: 120px;
+}
+.fogetLog{
+    text-align: end;
+    padding-right: 0;
+}
