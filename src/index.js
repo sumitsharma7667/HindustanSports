@@ -33,9 +33,9 @@ ReactDOM.render(
         <AppRoute path="/addbrand" layout={AdminLayout} component={Addbrand} />
         
         <Route path="/Home" component={Home} />
-        <Route path="/Singleproduct"component={Singleproduct}/>
+        {/* <Route path="/Singleproduct"component={Singleproduct}/> */}
         <Route path="/about" component={about} />
-        <Route path="/Cart" component={Cart} />
+        <Route path="/Singleproduct/:id" component={Cart} />
         <Route path="/login" component={LoginPage} />
         <Route path="/Signup" component={SignupPage}/>
         </MyContextprovider>

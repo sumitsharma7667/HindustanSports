@@ -50,7 +50,7 @@ const Home = () => {
             setdata(tempdata)
             // console.log(data[3].data.image[0])
         })
-    }
+    }    
     
     if (data[0] !== undefined) {
         return (
@@ -74,8 +74,17 @@ const Home = () => {
                             <div className="col-md-4">
                                  <div className="row">
                                 <ul className="navMenulist">
-                                        <div className="col-4">
-                                            <li>Login/Register</li>
+                                        <div className="col-4 d-flex">
+                                            <li>
+                                                <Link to="Login">
+                                                Login/
+                                                </Link>
+                                                </li>
+                                            <li>
+                                                <Link to="signup">
+                                                Register
+                                                </Link>
+                                                </li>
                                         </div>
                                         <div className="col-4">
                                             <li>Wishlist</li>
@@ -103,9 +112,9 @@ const Home = () => {
                                 </div>
                                 {/* <select className="form-control homeCategory" name="cars" id="cars">
                                     <option value="">Categories</option>
-                                </select> */}
+                                </select> */}                                
                                 
-                            </div>
+                            </div>                            
                             
                             <div className="col-md-5 IconsSec">
                                 <div className="row iconsHead">
@@ -177,7 +186,6 @@ const Home = () => {
                 </section >
                 <section className=" thirdSec">
                     <div className="headCat"><h4>Categories</h4></div>
-
                     <hr />
                     <div className="container">
                         <div className="row">
@@ -224,7 +232,7 @@ const Home = () => {
                     <div className="row mt-5">
                         {
                             data.map((el,ind)=>{
-                                if(data[ind].data.producttype=="featured"&&ind<=7){
+                            if(data[ind].data.producttype=="featured"){
                              return(
                             <div className="col-md-3 mt-4">
                             <div class="card cardPrice">
@@ -236,7 +244,7 @@ const Home = () => {
                                 <div class="contentBx">
                                     <h3>lethered Basketball</h3>
                                     <h2 class="price">$20.<small>99</small></h2>
-                                    <a href="#" class="buyNow">Buy Now</a>
+                                    <Link to={"Singleproduct/"+el.key} class="buyNow">Buy Now</Link>
                                 </div>
                             </div>
                         </div>
