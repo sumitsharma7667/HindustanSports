@@ -37,6 +37,7 @@ ReactDOM.render(
         {/* <Route path="/Singleproduct"component={Singleproduct}/> */}
         <Route path="/about" component={about} />
         <Route path="/Singleproduct/:id" component={Cart} />
+        <Route path="/Addcart" component={Addcart} />
         <Route path="/login" component={LoginPage} />
         <Route path="/Signup" component={SignupPage}/>
         </MyContextprovider>

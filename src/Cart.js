@@ -6,7 +6,7 @@ const Cart = (props) => {
     }, [])
     const [data, setdata] = useState("")
     const getdata = async (id) => {
-        await firebaseDb.child("Products/" + props.match.params.id).on("value", function (onSnapshot) {
+        await firebaseDb.child("Products/" + id).on("value", function (onSnapshot) {
         setdata(onSnapshot.val())
         })
     }
@@ -371,7 +371,7 @@ const Cart = (props) => {
     else {
         return (
             <>
-                <h1>Hello</h1>
+            <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_lz5rbiit.json"  background="transparent"  speed="1"  style={{width:500,height:"100%",margin:"auto"}}loop  autoplay></lottie-player>
             </>
         )
     }
