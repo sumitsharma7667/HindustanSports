@@ -1,5 +1,8 @@
-import  firebase from 'firebase';
+import firebase from 'firebase/app'
 import "firebase/storage"
+import 'firebase/database'
+import 'firebase/auth'
+
 var firebaseConfig = {
     apiKey: "AIzaSyAs5NrEqzy8sckIxkGfxnq4ijEXrsan248",
     authDomain: "hindustansports-9903f.firebaseapp.com",
@@ -12,7 +15,8 @@ var firebaseConfig = {
   };
   // Initialize Firebase
  var firebaseDb= firebase.initializeApp(firebaseConfig);
-//   firebase.analytics();
+//firebase.analytics();
 export default firebaseDb.database().ref();
 const storage=firebase.storage();
-export {storage}
+const auth =firebaseDb.auth()
+export {storage,auth}

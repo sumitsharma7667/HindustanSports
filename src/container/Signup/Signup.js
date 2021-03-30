@@ -1,6 +1,24 @@
-import React, { Component } from "react";
-class SignupPage extends Component{
-    render(){
+import React, { useState,useEffect } from "react";
+import firebaseDb from "../../firebase"
+import {auth} from "../../firebase"
+const SignupPage=()=> {    
+    const[email,setemail]=useState("Sumit")
+    const[password,setpassword]=useState("123123")
+    const mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const signup=async()=>{     
+     if(email.match(mailformat)&&password.length>=6){
+        await auth.createUserWithEmailAndPassword(email,password)
+        .then((user) => {
+          alert("data Saved Successfully");
+        })
+        .catch((error) => {
+         console.log(error)
+        });
+     }
+     else{
+     alert("Mail is not valid")
+     }     
+    }
         return (
             <React.Fragment>
                   <div className="container-fluid">
@@ -22,10 +40,10 @@ class SignupPage extends Component{
                                     <input type="text" className="form-control inputLog" />
                                      <label>Last name</label>
                                         <input type="text" className="form-control inputLog" />
-                                         <label>Email</label>
-                                    <input type="text" className="form-control inputLog" />
-                                     <label>Mobile number</label>
-                                        <input type="text" className="form-control inputLog" />
+                                        <label>Email</label>
+                                        <input type="email" className="form-control inputLog"  onChange={(e)=>{setemail(e.target.value)}}/>
+                                         <label>Password</label>
+                                    <input type="password" className="form-control inputLog" onChange={(e)=>{setpassword(e.target.value)}} />                                    
                                      </div>
                                 <div className="row mt-3">
                                     <div className=" col-6">
@@ -39,7 +57,7 @@ class SignupPage extends Component{
                             </div>
                             <div className="row mt-3">
                                 <div className="col-12">
-                                    <button className="btn btn-primary">Login</button>
+                                    <a className="btn btn-primary" onClick={()=>{signup()}} >Login</a>
                                 </div>
                             </div>
                             </div>
@@ -47,7 +65,6 @@ class SignupPage extends Component{
                     </div>
                 </div>
         </React.Fragment>
-    )
-    }
+    )    
 }
 export default SignupPage

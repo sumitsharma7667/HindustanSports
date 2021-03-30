@@ -1,9 +1,19 @@
-import React, { Component } from "react";
-
-class LoginPage extends Component {
-    render() {
-        return (
-            
+import React,{useState,useEffect}from"react";
+import firebaseDb from "../../firebase"
+import {auth} from "../../firebase"
+const LoginPage =()=> {
+        const[email,setemail]=useState()
+        const[password,setpassword]=useState()        
+        const signin=async()=>{            
+            await auth.signInWithEmailAndPassword(email,password).then((e)=>{
+            console.log(e)
+            alert("Login Successfully")
+            })
+            .catch(err=>{
+            console.log(err)
+            })
+        }           
+        return (            
             <React.Fragment>
                 <div className="container-fluid">
                     <div className="row imgRowLog">
@@ -21,9 +31,9 @@ class LoginPage extends Component {
                             <div className="row">
                                 <div className="col-12">
                                     <label>Email</label>
-                                    <input type="text" className="form-control inputLog" />
+                                    <input type="email" className="form-control inputLog" onChange={(e)=>{setemail(e.target.value)}} />
                                      <label>Password</label>
-                                    <input type="text" className="form-control inputLog" />
+                                    <input type="text" className="form-control inputLog"  onChange={(e)=>{setpassword(e.target.value)}}/>
                                      </div>
                                 <div className="row mt-3">
                                     <div className=" col-6">
@@ -37,7 +47,7 @@ class LoginPage extends Component {
                             </div>
                             <div className="row mt-3">
                                 <div className="col-12">
-                                    <button className="btn btn-primary">Login</button>
+                                    <button className="btn btn-primary" onClick={(e)=>{signin()}}>Login</button>
                                 </div>
                             </div>
                             </div>
@@ -45,8 +55,7 @@ class LoginPage extends Component {
                     </div>
                 </div>
             </React.Fragment>
-        )
-    }
+        )    
 }
 
 export default LoginPage

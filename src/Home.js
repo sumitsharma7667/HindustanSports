@@ -240,15 +240,14 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
-                             )  
-                                } 
+                        )  
+                            } 
                             })
                         }                                                                
                     </div>
                 </div>
                 <div className="container">
-                    <div className="row mt-3">
-                        <h1>hiui</h1>
+                    <div className="row mt-3">                        
                         <div className="col-md-3">
                             <div class="card cardPrice">
                                 <div class="imgbx">

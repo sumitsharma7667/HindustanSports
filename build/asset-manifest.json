@@ -1,21 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.1e2f7922.chunk.css",
-    "main.js": "/static/js/main.66d4d13d.chunk.js",
-    "main.js.map": "/static/js/main.66d4d13d.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.e52ebce4.js",
-    "runtime-main.js.map": "/static/js/runtime-main.e52ebce4.js.map",
+    "main.css": "/static/css/main.5ada324b.chunk.css",
+    "main.js": "/static/js/main.730973d7.chunk.js",
+    "main.js.map": "/static/js/main.730973d7.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.c87caa69.js",
+    "runtime-main.js.map": "/static/js/runtime-main.c87caa69.js.map",
     "static/css/2.81198f32.chunk.css": "/static/css/2.81198f32.chunk.css",
-    "static/js/2.2b425803.chunk.js": "/static/js/2.2b425803.chunk.js",
-    "static/js/2.2b425803.chunk.js.map": "/static/js/2.2b425803.chunk.js.map",
-    "static/js/3.bf8fc702.chunk.js": "/static/js/3.bf8fc702.chunk.js",
-    "static/js/3.bf8fc702.chunk.js.map": "/static/js/3.bf8fc702.chunk.js.map",
+    "static/js/2.0218e0ff.chunk.js": "/static/js/2.0218e0ff.chunk.js",
+    "static/js/2.0218e0ff.chunk.js.map": "/static/js/2.0218e0ff.chunk.js.map",
+    "static/js/3.eb876a7c.chunk.js": "/static/js/3.eb876a7c.chunk.js",
+    "static/js/3.eb876a7c.chunk.js.map": "/static/js/3.eb876a7c.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.81198f32.chunk.css.map": "/static/css/2.81198f32.chunk.css.map",
-    "static/css/main.1e2f7922.chunk.css.map": "/static/css/main.1e2f7922.chunk.css.map",
-    "static/js/2.2b425803.chunk.js.LICENSE.txt": "/static/js/2.2b425803.chunk.js.LICENSE.txt",
+    "static/css/main.5ada324b.chunk.css.map": "/static/css/main.5ada324b.chunk.css.map",
+    "static/js/2.0218e0ff.chunk.js.LICENSE.txt": "/static/js/2.0218e0ff.chunk.js.LICENSE.txt",
     "static/media/18-SM268387.jpg": "/static/media/18-SM268387.a395928d.jpg",
+    "static/media/Adishoe.png": "/static/media/Adishoe.5541fb30.png",
     "static/media/S150C_2000x (1).png": "/static/media/S150C_2000x (1).1f56f567.png",
+    "static/media/SignUP.jpg": "/static/media/SignUP.39340a34.jpg",
+    "static/media/bgimg.jpg": "/static/media/bgimg.2f0d2ede.jpg",
     "static/media/cricketer.png": "/static/media/cricketer.d3b996ba.png",
     "static/media/image-11.png": "/static/media/image-11.970c84a2.png",
     "static/media/image-8.png": "/static/media/image-8.9d230a11.png",
@@ -35,10 +38,10 @@
     "static/media/young-woman-playing-badminton-gym.jpg": "/static/media/young-woman-playing-badminton-gym.1f9f8034.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.e52ebce4.js",
+    "static/js/runtime-main.c87caa69.js",
     "static/css/2.81198f32.chunk.css",
-    "static/js/2.2b425803.chunk.js",
-    "static/css/main.1e2f7922.chunk.css",
-    "static/js/main.66d4d13d.chunk.js"
+    "static/js/2.0218e0ff.chunk.js",
+    "static/css/main.5ada324b.chunk.css",
+    "static/js/main.730973d7.chunk.js"
   ]
 }

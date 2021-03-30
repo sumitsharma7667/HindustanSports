@@ -5,8 +5,8 @@ import "./style.css"
 import firebaseDb from "./firebase"
 import { storage } from "./firebase"
 import DataTable from '@bit/adeoy.utils.data-table';
-var imageurl = []
-const ProductForm = () => {
+var imageurl=[]
+    const ProductForm = () => {
     const [data, setdata] = useState([])
     const [name, Setname] = useState("")
     const [image, Setimage] = useState([])
