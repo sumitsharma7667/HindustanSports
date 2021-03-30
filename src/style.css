@@ -81,6 +81,7 @@ overflow-x: hidden;
  }
  .sectBody{
     text-align: center;
+    margin: 10px
  }
  .cardt{
      font-size: 16px;
@@ -90,6 +91,10 @@ overflow-x: hidden;
  }
 .imgClas{
     margin-left: -24px;
+    /* object-fit: contain; */
+}
+.firstImgSec{
+    object-fit: contain;
 }
 .imgClasSec{
     margin-left: -48px;
@@ -649,4 +654,42 @@ color: #fff;
 .fogetLog{
     text-align: end;
     padding-right: 0;
+}
+
+/* Shopping Cart */
+
+.shopCartHead{
+    text-align: center;
+}
+.priceOfProd{
+    display: flex;
+}
+/* .ImgCardCat{
+    height: 50%;
+} */
+.imageAddcart{
+    height: 100%;
+    width: 100%;
+}
+.imgColaddcart{
+    padding-left: 0;
+    padding-right: 0;
+}
+.colFouraddCart{
+    height: 100%;
+    background:#2fc1df;
+}
+.fourtSecAddcart{
+    background:#2fc1df;
+    height: 20vh;
+}
+.contAddcart{
+    height: 100%;
+}
+.AddCardImgrow{
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    display: flex;
+    height: 100%;
 }

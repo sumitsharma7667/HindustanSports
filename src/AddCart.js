@@ -1,61 +1,9 @@
-
-import React, { useEffect, useState } from 'react';
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import { Link } from "react-router-dom";
-import $ from 'jquery';
-import firebaseDb from "./firebase"
-import "./style.css"
-const Home = () => {
-    useEffect(() => {
-        getdata()
-        getCategory()
-    },[])
-    const [data, setdata] = useState([])
-    const [category, setcategory] = useState([])
-    const responsive = {
-        superLargeDesktop: {
-            // the naming can be any, depends on you.
-            breakpoint: { max: 4000, min: 3000 },
-            items: 5
-        },
-        desktop: {
-            breakpoint: { max: 3000, min: 1024 },
-            items: 6
-        },
-        tablet: {
-            breakpoint: { max: 1024, min: 464 },
-            items: 2
-        },
-        mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 1
-        }
-    };
-    const getCategory = () => {
-        firebaseDb.child("Catogery").on("value", function (onSnapshot) {
-            let tempdata = []
-            onSnapshot.forEach(item => {
-                tempdata.push({ data: item.val(), key: item.key })
-            })
-            setcategory(tempdata)
-        })
-    }
-    const getdata = async () => {
-        await firebaseDb.child("Products").on("value", function (onSnapshot) {
-            let tempdata = []
-            onSnapshot.forEach(item => {
-                tempdata.push({ data: item.val(), key: item.key })
-            })
-            setdata(tempdata)
-            // console.log(data[3].data.image[0])
-        })
-    }    
-
-    if (data[0] !== undefined) {
+import React, { Component } from "react";
+class Addcart extends Component {
+    render() {
         return (
-            <>
-                <header>
+            <React.Fragment>
+                 <header>
                     <div className="container-fluid headercontainer">
                         <div className="row">
                             <div className="col-2 mt-2">
@@ -74,17 +22,8 @@ const Home = () => {
                             <div className="col-md-4">
                                  <div className="row">
                                 <ul className="navMenulist">
-                                        <div className="col-4 d-flex">
-                                            <li>
-                                                <Link to="Login">
-                                                Login/
-                                                </Link>
-                                                </li>
-                                            <li>
-                                                <Link to="signup">
-                                                Register
-                                                </Link>
-                                                </li>
+                                        <div className="col-4">
+                                            <li>Login/Register</li>
                                         </div>
                                         <div className="col-4">
                                             <li>Wishlist</li>
@@ -98,7 +37,7 @@ const Home = () => {
                         </div>
                     </div>
                 </header>
-                <section class="card sectCard">
+                 <section class="card sectCard">
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col-md-2">
@@ -112,9 +51,9 @@ const Home = () => {
                                 </div>
                                 {/* <select className="form-control homeCategory" name="cars" id="cars">
                                     <option value="">Categories</option>
-                                </select> */}                                
+                                </select> */}
                                 
-                            </div>                            
+                            </div>
                             
                             <div className="col-md-5 IconsSec">
                                 <div className="row iconsHead">
@@ -146,231 +85,302 @@ const Home = () => {
                         </div>
                     </div>
                 </section>
-                <section className="imagesSect mt-3">
-                    <div className="container">
-                        <div className="row imageRow">
-                            <div className="col-md-6">
-                                <img src={data[1].data.image[0]} className="w-100  mb-4 firstrowImg"/>
-                            </div>
-                            <div className="col-md-6 colSixsec">
-                                <div className="row seconRow">
-                                    <div className="col-md-6">
-                                        <img src={data[2].data.image[0]} className="w-100 s mb-4 firstrowImg imgClas firstImgSec" />
-                                    </div>
-                                    <div className="col-md-6  ">
-                                        <img src={data[2].data.image[1]} className="  mb-4 firstrowImg imgClasSec" />
-                                    </div>
-                                     </div>
-                                <div className="row seconRow">
-                                    <div className="col-md-6  ">
-                                        <img src={data[3].data.image[0]} className="w-100  mb-4 firstrowImg imgClas" />
-                                    </div>
-                                    <div className="col-md-6 ">
-                                        <img src={data[3].data.image[1]} className=" mb-4 firstrowImg imgClasSec" />
-                                    </div>
-                                </div>
-                            </div>
-                      </div>
-                        <div className="row">
-                            <div className="col-3  ">
-                                <img src={require("./images/cricketer.png").default} className="  mb-4  ImagesClas cricketimg" />
-                            </div>
-                            <div className="col-3  ">
-                                <img src={require("./images/kit.jpg").default} className="w-100  mb-4 ImagesClas" />
-                            </div>
-                            <div className="col-6 lastCol">
-                                <img src={require("./images/18-SM268387.jpg").default} className="w-100  mb-4 ImagesClas imgClas" />
-                            </div>
-                        </div>
-                    </div>
-                </section >
-                <section className=" thirdSec">
-                    <div className="headCat"><h4>Categories</h4></div>
-                    <hr />
-                    <div className="container">
-                        <div className="row">
-                            {
-                                category.map((el,ind)=>{
-                                    console.log(data[ind].data,"is here")
-                                    return(
-                                    <div className="col-2 card p-2 sectBody">                                        
-                                            <img  src={data[ind].data.image} className="CategoriesIcon" />:                                        
-                                        <h3 className="mt-3 cardt">{data[ind].data.name}</h3>
-                                    </div>
-                                    )
-                                })
-                            }
-                            {/* <div className="col-2 card p-2 sectBody">
-                                <img src={require("./images/badminton.png").default} className="CategoriesIcon" />
-                                <h3 className="mt-3 cardt">Badminton</h3>
-                            </div>
-                            <div className="col-2 card p-2 sectBody">
-                                <img src={require("./images/basketball-2062459-1740039.png").default} className="CategoriesIcon" />
-                                <h3 className="mt-3 cardt">Badminton</h3>
-                            </div>
-                            <div className="col-2 card p-2 sectBody">
-                                <img src={require("./images/football-game.png").default} className="CategoriesIcon" />
-                                <h3 className="mt-3 cardt">Badminton</h3>
-                            </div>
-                            <div className="col-2 card p-2 sectBody">
-                                <img src={require("./images/40678-200.png").default} className="CategoriesIcon" />
-                                <h3 className="mt-3 cardt">Badminton</h3>
-                            </div>
-                            <div className="col-2 card p-2 sectBody">
-                                <img src={require("./images/768px-Volleyball_icon_by_Arthur_Shlain.png").default} className="CategoriesIcon" />
-                                <h3 className="mt-3 cardt">Badminton</h3>
-                            </div>
-                            <div className="col-2 card p-2 sectBody">
-                                <img src={require("./images/207546-200.png").default} className="CategoriesIcon" />
-                                <h3 className="mt-3 cardt">Badminton</h3>
-                            </div> */}
+                {/* Shopping card heading  */}
+                <section className="mt-4">
+                    <div className="container-fluid">
+                        <div className="card shopCartHead">
+                            <h4>Shopping Cart</h4>
                         </div>
                     </div>
                 </section>
-                <div className="headCat mt-4"><h4>FEATURED</h4></div>
-                <div className="container mb-3">
-                    <div className="row mt-5">
-                        {
-                            data.map((el,ind)=>{
-                            if(data[ind].data.producttype=="featured"){
-                             return(
-                            <div className="col-md-3 mt-4">
-                            <div class="card cardPrice">
-                                <div class="imgbx">
-                                <img src={data[ind].data.image[0]} className=""/>
-                                    {/* <img src={require("./images/207546-200.png").default} className="" /> */}
-                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                {/* Shopping product Cart section */}
+                <section className="mt-4">
+                    <div className="container">
+                        <div className="row">
+                        <div className="col-md-8">
+                                <div className="row card ImgCardCat">
+                                    <div className="col-md-12">
+                                        <div className="row">
+                                            <div className="col-4 imgColaddcart">
+                                                <img src={require("./images/football.jpg").default}  className="imageAddcart"/>
+                                            </div>
+                                            <div className="col-8">
+                                                <div className="row">
+                                                    <div className="col-12">
+                                                        <h4>Baden Low bounce Futsal Practice Football shoe</h4>
+                                                        </div>
+                                                </div>
+                                                <div className="row">
+                                                    <div className="col-12">
+                                                        <div className="priceOfProd">
+                                                        <label>Qty:</label>
+                                                            <select></select>
+                                                            <h6>Price: $1200</h6>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                    </div>
                                 </div>
-                                <div class="contentBx">
-                                    <h3>lethered Basketball</h3>
-                                    <h2 class="price">$20.<small>99</small></h2>
-                                    <Link to={"Singleproduct/"+el.key} class="buyNow">Buy Now</Link>
-                                </div>
+                                <div className="row card mt-3">
+                                    <div className="col-md-12">
+                                         <div className="row">
+                                             <div className="col-4 imgColaddcart">
+                                                <img src={require("./images/football.jpg").default}  className="imageAddcart"/>
+                                            </div>
+                                              <div className="col-8">
+                                                <div className="row">
+                                                    <div className="col-12">
+                                                        <h4>Baden Low bounce Futsal Practice Football shoe</h4>
+                                                        </div>
+                                                </div>
+                                                <div className="row">
+                                                    <div className="col-12">
+                                                        <div className="priceOfProd">
+                                                        <label>Qty:</label>
+                                                            <select></select>
+                                                            <h6>Price: $1200</h6>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                    </div>
                             </div>
-                        </div>
-                        )  
-                            } 
-                            })
-                        }                                                                
-                    </div>
-                </div>
-                <div className="container">
-                    <div className="row mt-3">
-                        <div className="col-md-3">
-                            <div class="card cardPrice">
-                                <div class="imgbx">
-                                    <img src={require("./images/207546-200.png").default} className="" />
-                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
-                                </div>
-                                <div class="contentBx">
-                                    <h3>lethered Basketball</h3>
-                                    <h2 class="price">$20.<small>99</small></h2>
-                                    <a href="#" class="buyNow">Buy Now</a>
-                                </div>
                             </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div class="card cardPrice">
-                                <div class="imgbx">
-                                    <img src={require("./images/207546-200.png").default} className="" />
-                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
-                                </div>
-                                <div class="contentBx">
-                                    <h3>lethered Basketball</h3>
-                                    <h2 class="price">$20.<small>99</small></h2>
-                                    <a href="#" class="buyNow">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div class="card cardPrice">
-                                <div class="imgbx">
-                                    <img src={require("./images/207546-200.png").default} className="" />
-                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
-                                </div>
-                                <div class="contentBx">
-                                    <h3>lethered Basketball</h3>
-                                    <h2 class="price">$20.<small>99</small></h2>
-                                    <a href="#" class="buyNow">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div class="card cardPrice">
-                                <div class="imgbx">
-                                    <img src={require("./images/207546-200.png").default} className="" />
-                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
-                                </div>
-                                <div class="contentBx">
-                                    <h3>lethered Basketball</h3>
-                                    <h2 class="price">$20.<small>99</small></h2>
-                                    <a href="#" class="buyNow">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr />
-                <div className="headCat mt-3"><h4>Recently viewed</h4></div>
-                <div className="container">
-                    <div className="row mt-5">
-                        <div className="col-md-3">
-                            <div class="card cardPrice">
-                                <div class="imgbx">
-                                    <img src={require("./images/207546-200.png").default} className="" />
-                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
-                                </div>
-                                <div class="contentBx">
-                                    <h3>lethered Basketball</h3>
-                                    <h2 class="price">$20.<small>99</small></h2>
-                                    <a href="#" class="buyNow">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div class="card cardPrice">
-                                <div class="imgbx">
-                                    <img src={require("./images/207546-200.png").default} className="" />
-                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
-                                </div>
-                                <div class="contentBx">
-                                    <h3>lethered Basketball</h3>
-                                    <h2 class="price">$20.<small>99</small></h2>
-                                    <a href="#" class="buyNow">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div class="card cardPrice">
-                                <div class="imgbx">
-                                    <img src={require("./images/207546-200.png").default} className="" />
-                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
-                                </div>
-                                <div class="contentBx">
-                                    <h3>lethered Basketball</h3>
-                                    <h2 class="price">$20.<small>99</small></h2>
-                                    <a href="#" class="buyNow">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div class="card cardPrice">
-                                <div class="imgbx">
-                                    <img src={require("./images/207546-200.png").default} className="" />
-                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
-                                </div>
-                                <div class="contentBx">
-                                    <h3>lethered Basketball</h3>
-                                    <h2 class="price">$20.<small>99</small></h2>
-                                    <a href="#" class="buyNow">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                            <div className="col-md-4">
+                                <div className="card colFouraddCart">
 
-                {/* Footer Section */}
-                <footer className="footSect">
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                    </div>
+                </section>
+                {/* third section  */}
+                <section>
+                    <div className="shopCartHead">
+                        <h4>Best Selling Football Shoes</h4>
+                    </div>
+                    <div className="container">
+                        <hr/>
+                         <div className="row mt-3">
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <hr />
+                         <div className="shopCartHead">
+                            <h4>Top selling Brands</h4>
+                        </div>
+                        <hr/>
+                    </div>
+                </section>
+                {/* Fourt section */}
+                <section className="fourtSecAddcart">
+                    <div className="container contAddcart">
+                        <div className="row AddCardImgrow">
+                            <div className="col-2">
+                               <img src={require("./images/image-10.png").default} className="" /> 
+                            </div>
+                            <div className="col-2">
+                                <img src={require("./images/image-11.png").default} className="" />
+                            </div>
+                            <div className="col-2">
+                                <img src={require("./images/image-12.png").default} className="" />
+                             </div>
+                            <div className="col-2">
+                                <img src={require("./images/image-13.png").default} className="" />
+                             </div>
+                            <div className="col-2">
+                                <img src={require("./images/image-9.png").default} className="" />
+                            </div>
+                            <div className="col-2">
+                                <img src={require("./images/image-8.png").default} className="" />
+                             </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* fifth section  */}
+                <section>
+                    <div className="container">
+                        <hr />
+                        <div className="shopCartHead">
+                            <h4>Related Products</h4>
+                        </div>
+                        <hr />
+                        <div className="row mt-3">
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </section>
+                {/* sixth section */}
+                <section>
+                    <div className="container">
+                        <hr/>
+                        <div className="shopCartHead">
+                            <h4>Recnetly viewed</h4>
+                        </div>
+                        <hr />
+                        <div className="row mt-3">
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </section>
+                  <footer className="footSect">
                     <div className="container">
                         <div className="row mt-3">
                             <div className="col-3 footCol">
@@ -452,14 +462,8 @@ const Home = () => {
                     </div>
                     </div>
                 </footer>
-            </>
-        )
-    }
-    else {
-        return (
-            <>
-            </>
+            </React.Fragment>
         )
     }
 }
-export default Home
+export default Addcart
