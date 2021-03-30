@@ -160,14 +160,308 @@ class Addcart extends Component {
                 </section>
                 {/* third section  */}
                 <section>
-                    <div  className="shopCartHead">
-                        <h5>Best Selling Football Shoes</h5>
+                    <div className="shopCartHead">
+                        <h4>Best Selling Football Shoes</h4>
                     </div>
                     <div className="container">
                         <hr/>
-
+                         <div className="row mt-3">
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <hr />
+                         <div className="shopCartHead">
+                            <h4>Top selling Brands</h4>
+                        </div>
+                        <hr/>
                     </div>
                 </section>
+                {/* Fourt section */}
+                <section className="fourtSecAddcart">
+                    <div className="container contAddcart">
+                        <div className="row AddCardImgrow">
+                            <div className="col-2">
+                               <img src={require("./images/image-10.png").default} className="" /> 
+                            </div>
+                            <div className="col-2">
+                                <img src={require("./images/image-11.png").default} className="" />
+                            </div>
+                            <div className="col-2">
+                                <img src={require("./images/image-12.png").default} className="" />
+                             </div>
+                            <div className="col-2">
+                                <img src={require("./images/image-13.png").default} className="" />
+                             </div>
+                            <div className="col-2">
+                                <img src={require("./images/image-9.png").default} className="" />
+                            </div>
+                            <div className="col-2">
+                                <img src={require("./images/image-8.png").default} className="" />
+                             </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* fifth section  */}
+                <section>
+                    <div className="container">
+                        <hr />
+                        <div className="shopCartHead">
+                            <h4>Related Products</h4>
+                        </div>
+                        <hr />
+                        <div className="row mt-3">
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </section>
+                {/* sixth section */}
+                <section>
+                    <div className="container">
+                        <hr/>
+                        <div className="shopCartHead">
+                            <h4>Recnetly viewed</h4>
+                        </div>
+                        <hr />
+                        <div className="row mt-3">
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div class="card cardPrice">
+                                <div class="imgbx">
+                                    <img src={require("./images/207546-200.png").default} className="" />
+                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
+                                </div>
+                                <div class="contentBx">
+                                    <h3>lethered Basketball</h3>
+                                    <h2 class="price">$20.<small>99</small></h2>
+                                    <a href="#" class="buyNow">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </section>
+                  <footer className="footSect">
+                    <div className="container">
+                        <div className="row mt-3">
+                            <div className="col-3 footCol">
+                                <h4>ABOUT US</h4>
+                                <span>
+                                <p>Who we are</p>
+                                 <p>Decathalon CSR</p>
+                                <p>Careers</p>
+                                <p>News Room</p>
+                                    <p>Made in India</p>
+                                    </span>
+                            </div>
+                            <div className="col-3 footCol">
+                                <h4>SUPPORT</h4>
+                                <span>
+                                <p>Conctact Our Stores</p>
+                                    <p>Delivery</p>
+                                    </span>
+                            </div>
+                            <div className="col-3 footCol">
+                                <h4>LEGAL</h4>
+                                <spna>
+                                <p>Return Policy</p>
+                                 <p>Terms and Conditions</p>
+                                    <p>Privacy Policy</p>
+                                    </spna>
+                                
+                            </div>
+                            <div className="col-3 footCol">
+                                 <h4>Connect with Us</h4>
+                                <p>0987886676</p>
+                                <div className="footerIcon">
+                                <i class="fab fa-twitter iCoNSS"></i>
+                                <i class="fab fa-facebook iCoNSS"></i>
+                                    <i class="fab fa-instagram iCoNSS"></i>
+                                    </div>
+                             </div>
+
+                        </div>
+                        <div className="row">
+                            <div className="col-3 footCol">
+                                <div className="addressL">
+                                <h4>Address</h4>
+                                <span>
+                                <p>22, Connought Place</p>
+                                <p>Dehradun Uttarakhand</p>
+                                    <p>248001 India</p>
+                                    </span>
+                                    </div>
+                            </div>
+                        
+                        <div className="col-9 ">
+                            <div className="row mt-4">
+                                <div className="col-3">
+                                     <img src={require("./images/image-8.png").default} className="" />
+                                </div>
+                                <div className="col-3">
+                                    <img src={require("./images/image-9.png").default}/>
+                                </div>
+                                    <div className="col-3">
+                                        <img src={require("./images/image-11.png").default} />
+                                    </div>
+                                    <div className="col-3">
+                                        <img src={require("./images/image-12.png").default} />
+                                </div>
+                                </div>
+                                <div className="row mt-2">
+                                <div className="col-3">
+                                     <img src={require("./images/image-15.png").default} className="" />
+                                </div>
+                                <div className="col-3">
+                                    <img src={require("./images/image-13.png").default}/>
+                                    </div>
+                                     <div className="col-3">
+                                    <img src={require("./images/image-10.png").default}/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </footer>
             </React.Fragment>
         )
     }
