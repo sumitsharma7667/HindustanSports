@@ -16,6 +16,7 @@ import Dashboard from "./Dashboard"
 import Addcategory from "./Addcategory"
 import Addbrand from "./Addbrand"
 import Cart from "./Cart"
+import Addcart from "./AddCart"
 import SignupPage from "./container/Signup/Signup"
 const AppRoute = ({component:Component,layout:Layout, ...rest})=>(
   <Route {...rest} render ={props=>(
@@ -36,6 +37,7 @@ ReactDOM.render(
         <Route path="/Singleproduct"component={Singleproduct}/>
         <Route path="/about" component={about} />
         <Route path="/Cart" component={Cart} />
+        <Route path="/Addcart" component={Addcart}/>
         <Route path="/login" component={LoginPage} />
         <Route path="/Signup" component={SignupPage}/>
         </MyContextprovider>

@@ -655,3 +655,27 @@ color: #fff;
     text-align: end;
     padding-right: 0;
 }
+
+/* Shopping Cart */
+
+.shopCartHead{
+    text-align: center;
+}
+.priceOfProd{
+    display: flex;
+}
+/* .ImgCardCat{
+    height: 50%;
+} */
+.imageAddcart{
+    height: 100%;
+    width: 100%;
+}
+.imgColaddcart{
+    padding-left: 0;
+    padding-right: 0;
+}
+.colFouraddCart{
+    height: 100%;
+    background:#2fc1df;
+}
