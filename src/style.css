@@ -146,7 +146,7 @@ overflow-x: hidden;
     width: 100%;
     display: flex;
     justify-content: center;
-    padding-top: 20px;
+    padding-top: 0px;
     z-index: 1;
 }
 .cardPrice .imgbx img {
@@ -683,7 +683,7 @@ color: #fff;
     background:#2fc1df;
     height: 20vh;
 }
-.contAddcart{
+.contAddcart, .borderInaddcart{
     height: 100%;
 }
 .AddCardImgrow{
