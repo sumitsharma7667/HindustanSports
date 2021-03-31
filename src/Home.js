@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import $ from 'jquery';
 import firebaseDb from "./firebase"
 import "./style.css"
+import Header from "./Header"
 // import Carousel from "react-multi-carousel";
 // import "react-multi-carousel/lib/styles.css";
 const responsive = {
@@ -58,49 +59,7 @@ const Home = () => {
     if (data[0] !== undefined) {
         return (
             <>
-                <header>
-                    <div className="container headercontainer">
-                        <div className="row">
-                            <div className="col-2 mt-2">
-                                <img src={require("./images/logo (1).png").default} className="logo" />
-                            </div>
-                            <div className="col-md-6 navUlC">
-                                <ul className="navMenulist">
-                                    <li>Home/</li>
-                                    <li> Categories/</li>
-                                    <li> Best Sellers/</li>
-                                    <li> New Release/</li>
-                                    <li> Shop by Brand/</li>
-                                    <li> Featured</li>
-                                </ul>
-                            </div>
-                            <div className="col-md-4">
-                                 <div className="row">
-                                <ul className="navMenulist">
-                                        <div className="col-4 d-flex">
-                                            <li>
-                                                <Link to="Login">
-                                                Login/
-                                                </Link>
-                                                </li>
-                                            <li>
-                                                <Link to="signup">
-                                                Register
-                                                </Link>
-                                                </li>
-                                        </div>
-                                        <div className="col-4">
-                                            <li>Wishlist</li>
-                                        </div>
-                                        <div className="col-4">
-                                            <li>Cart <i class="fas fa-shopping-cart"></i></li>
-                                            </div>
-                                </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </header>
+                <Header/>
                 <section class="card sectCard">
                     <div className="container-fluid">
                         <div className="row">
@@ -242,7 +201,7 @@ const Home = () => {
                     <div className="row mt-5">
                         {
                             data.map((el,ind)=>{
-                            if(data[ind].data.producttype=="featured"){
+                            if(data[ind].data.producttype=="featured"&&ind<=7){
                              return(
                             <div className="col-md-3 mt-4">
                             <div class="card cardPrice">
@@ -264,62 +223,7 @@ const Home = () => {
                         }                                                                
                     </div>
                 </div>
-                <div className="container">
-                    <div className="row mt-3">
-                        <div className="col-md-3">
-                            <div class="card cardPrice">
-                                <div class="imgbx">
-                                    <img src={require("./images/207546-200.png").default} className="" />
-                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
-                                </div>
-                                <div class="contentBx">
-                                    <h3>lethered Basketball</h3>
-                                    <h2 class="price">$20.<small>99</small></h2>
-                                    <a href="#" class="buyNow">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div class="card cardPrice">
-                                <div class="imgbx">
-                                    <img src={require("./images/207546-200.png").default} className="" />
-                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
-                                </div>
-                                <div class="contentBx">
-                                    <h3>lethered Basketball</h3>
-                                    <h2 class="price">$20.<small>99</small></h2>
-                                    <a href="#" class="buyNow">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div class="card cardPrice">
-                                <div class="imgbx">
-                                    <img src={require("./images/207546-200.png").default} className="" />
-                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
-                                </div>
-                                <div class="contentBx">
-                                    <h3>lethered Basketball</h3>
-                                    <h2 class="price">$20.<small>99</small></h2>
-                                    <a href="#" class="buyNow">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div class="card cardPrice">
-                                <div class="imgbx">
-                                    <img src={require("./images/207546-200.png").default} className="" />
-                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
-                                </div>
-                                <div class="contentBx">
-                                    <h3>lethered Basketball</h3>
-                                    <h2 class="price">$20.<small>99</small></h2>
-                                    <a href="#" class="buyNow">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
                 <hr />
                 <div className="headCat mt-3"><h4>Recently viewed</h4></div>
                 <div className="container">

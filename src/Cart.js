@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import firebaseDb from "./firebase"
+import Header from "./Header"
 var isorder=[]
 const Cart = (props) => {
     useEffect(() => {
@@ -16,7 +17,7 @@ const Cart = (props) => {
         setdata(onSnapshot.val())
         setproductkey(onSnapshot.key)     
         })
-    }
+    }    
     const getcartdata = () => {
         firebaseDb.child("Cart").on("value",function (onSnapshot) {    
             onSnapshot.forEach(item => {            
@@ -101,41 +102,7 @@ const Cart = (props) => {
      {
         return (
             <>
-                <header>
-                    <div className="container-fluid headercontainer">
-                        <div className="row">
-
-                            <div className="col-2 mt-2">
-                                <img src={require("./images/logo (1).png").default} className="logo" />
-                            </div>
-                            <div className="col-md-6 navUlC">
-                                <ul className="navMenulist">
-                                    <li>Home/</li>
-                                    <li> Categories/</li>
-                                    <li> Best Sellers/</li>
-                                    <li> New Release/</li>
-                                    <li> Shop by Brand/</li>
-                                    <li> Featured</li>
-                                </ul>
-                            </div>
-                            <div className="col-md-4">
-                                <div className="row">
-                                    <ul className="navMenulist">
-                                        <div className="col-4">
-                                            <li>Login/Register</li>
-                                        </div>
-                                        <div className="col-4">
-                                            <li>Wishlist</li>
-                                        </div>
-                                        <div className="col-4">
-                                            <li>Cart <i className="fas fa-shopping-cart"></i></li>
-                                        </div>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </header>
+                <Header/>
                 <section className="card sectCard">
                     <div className="container-fluid">
                         <div className="row">
