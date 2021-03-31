@@ -88,21 +88,23 @@ overflow-x: hidden;
  .ImagesClas{
      height: 50%;
  }
-.imgClas{
+ .colImgsec{
+     padding: 0;
+ }
+/* .imgClas{
     margin-left: -24px;
-    /* object-fit: contain; */
-}
-.firstImgSec{
     object-fit: contain;
+} */
+.firstImgSec{
+    object-fit: cover;
 }
-.imgClasSec{
-    margin-left: -48px;
-    width: 284px;
-}
+
 .cricketimg{
     width: 285px;
 }
-
+.colSixsec{
+    padding: 0;
+}
  /* featured section */
  .cardPrice:hover{
      transform: scale(1.1);
