@@ -27,6 +27,7 @@ ReactDOM.render(
   <BrowserRouter >
       <Switch>
         <MyContextprovider>
+        
         <AppRoute path ="/productform" layout={AdminLayout} component={Productform} />
         <AppRoute path ="/dashboard" layout={AdminLayout} component={Dashboard} />
         <AppRoute path ="/Addcategory" layout={AdminLayout} component={Addcategory} />
@@ -40,10 +41,8 @@ ReactDOM.render(
         <Route path="/Addcart" component={Addcart} />
         <Route path="/login" component={LoginPage} />
         <Route path="/Signup" component={SignupPage}/>
-        </MyContextprovider>
-        <Route path="/">
-        <Home/>
-        </Route>
+        <Route path="/" exect component={Home} />
+        </MyContextprovider>      
       </Switch>        
   </BrowserRouter>,
 document.getElementById('root')

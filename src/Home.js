@@ -202,7 +202,7 @@ const Home = () => {
                     <div className="row mt-5">
                         {
                             data.map((el,ind)=>{
-                            if(data[ind].data.producttype=="featured"){
+                            if(data[ind].data.producttype=="featured"&&ind<=7){
                              return(
                             <div className="col-md-3 mt-4">
                             <div class="card cardPrice">
@@ -224,62 +224,7 @@ const Home = () => {
                         }                                                                
                     </div>
                 </div>
-                <div className="container">
-                    <div className="row mt-3">
-                        <div className="col-md-3">
-                            <div class="card cardPrice">
-                                <div class="imgbx">
-                                    <img src={require("./images/207546-200.png").default} className="" />
-                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
-                                </div>
-                                <div class="contentBx">
-                                    <h3>lethered Basketball</h3>
-                                    <h2 class="price">$20.<small>99</small></h2>
-                                    <a href="#" class="buyNow">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div class="card cardPrice">
-                                <div class="imgbx">
-                                    <img src={require("./images/207546-200.png").default} className="" />
-                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
-                                </div>
-                                <div class="contentBx">
-                                    <h3>lethered Basketball</h3>
-                                    <h2 class="price">$20.<small>99</small></h2>
-                                    <a href="#" class="buyNow">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div class="card cardPrice">
-                                <div class="imgbx">
-                                    <img src={require("./images/207546-200.png").default} className="" />
-                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
-                                </div>
-                                <div class="contentBx">
-                                    <h3>lethered Basketball</h3>
-                                    <h2 class="price">$20.<small>99</small></h2>
-                                    <a href="#" class="buyNow">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div class="card cardPrice">
-                                <div class="imgbx">
-                                    <img src={require("./images/207546-200.png").default} className="" />
-                                    {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
-                                </div>
-                                <div class="contentBx">
-                                    <h3>lethered Basketball</h3>
-                                    <h2 class="price">$20.<small>99</small></h2>
-                                    <a href="#" class="buyNow">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
                 <hr />
                 <div className="headCat mt-3"><h4>Recently viewed</h4></div>
                 <div className="container">
