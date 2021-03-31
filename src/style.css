@@ -58,35 +58,24 @@ overflow-x: hidden;
    text-align: center;
 }
 /* Third section */
-.thirdSec{
-    margin-top: -185px;
-}
 .firstrowImg{
     height: 100%;
 }
 
- .lastCol{
-    width: 50% !important;
- }
  .headCat{
      text-align: center;
      color: black;
  }
  .CategoriesIcon{
-    height: 50px;
-    width: 70px;
-    text-align: center !important;
-    margin-left: 50px;
+    height: 130px;
+    width: 130px;
  }
  .sectBody{
-    text-align: center;
-    margin: 10px
+    align-items: center;
+    justify-content: center;
  }
  .cardt{
      font-size: 16px;
- }
- .ImagesClas{
-     height: 50%;
  }
  .colImgsec{
      padding: 0;
@@ -97,10 +86,12 @@ overflow-x: hidden;
 } */
 .firstImgSec{
     object-fit: cover;
+    width: 100%;
+    height: 100%;
 }
-
-.cricketimg{
-    width: 285px;
+.ImagesClas{
+    height: 200px;
+    width: 100%;
 }
 .colSixsec{
     padding: 0;

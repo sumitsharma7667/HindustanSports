@@ -13,19 +13,19 @@ const responsive = {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
     items: 3,
-    slidesToSlide: 3
+    slidesToSlide: 5
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 3
+    items: 4
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 2
+    items: 3
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 1
+    items: 3
   }
 };
 const Home = () => {
@@ -59,7 +59,7 @@ const Home = () => {
         return (
             <>
                 <header>
-                    <div className="container-fluid headercontainer">
+                    <div className="container headercontainer">
                         <div className="row">
                             <div className="col-2 mt-2">
                                 <img src={require("./images/logo (1).png").default} className="logo" />
@@ -151,45 +151,44 @@ const Home = () => {
                 </section>
                 {/* Image section */}
                 <section className="imagesSect mt-3">
-                    <div className="container-fluid">
+                    <div className="container">
                         <div className="row imageRow">
                             <div className="col-md-6">
                                 <img src={data[1].data.image[0]} className="firstrowImg"/>
                             </div>
-                            <div className="col-md-6 colSixsec">
+                            <div className="col-md-6">
                                 <div className="row seconRow">
                                     <div className="col-md-6 colImgsec">
-                                        <img src={data[2].data.image[0]} className="w-100 s mb-4 firstrowImg imgClas firstImgSec" />
+                                        <img src={data[2].data.image[0]} className="firstrowImg imgClas firstImgSec" />
                                     </div>
                                     <div className="col-md-6 colImgsec ">
-                                        <img src={data[2].data.image[1]} className="  mb-4 firstrowImg imgClasSec" />
+                                        <img src={data[2].data.image[1]} className="firstrowImg imgClas firstImgSec" />
+                                    </div>
+                                    
+                                    <div className="col-md-6 colImgsec ">
+                                        <img src={data[3].data.image[0]} className="firstrowImg imgClas firstImgSec" />
+                                    </div>
+                                    <div className="col-md-6 colImgsec">
+                                        <img src={data[3].data.image[1]} className="firstrowImg imgClas firstImgSec" />
                                     </div>
                                      </div>
-                                <div className="row seconRow">
-                                    <div className="col-md-6 colImgsec ">
-                                        <img src={data[3].data.image[0]} className="w-100  mb-4 firstrowImg imgClas" />
-                                    </div>
-                                    <div className="col-md-6 colImgsec">
-                                        <img src={data[3].data.image[1]} className=" mb-4 firstrowImg imgClasSec" />
-                                    </div>
-                                </div>
                             </div>
                       </div>
                         <div className="row">
-                            <div className="col-3  ">
-                                <img src={require("./images/cricketer.png").default} className="  mb-4  ImagesClas cricketimg" />
+                            <div className="col-3 colImgsec ">
+                                <img src={require("./images/cricketer.png").default} className="ImagesClas cricketimg" />
                             </div>
-                            <div className="col-3  ">
-                                <img src={require("./images/kit.jpg").default} className="w-100  mb-4 ImagesClas" />
+                            <div className="col-3 colImgsec ">
+                                <img src={require("./images/kit.jpg").default} className="ImagesClas" />
                             </div>
-                            <div className="col-6 lastCol">
-                                <img src={require("./images/18-SM268387.jpg").default} className="w-100  mb-4 ImagesClas imgClas" />
+                            <div className="col-6 colImgsec">
+                                <img src={require("./images/18-SM268387.jpg").default} className="ImagesClas imgClas" />
                             </div>
                         </div>
                     </div>
                 </section >
                 {/* Categories section */}
-                <section className=" thirdSec">
+                <section className=" thirdSec mt-4">
                     <div className="headCat"><h4>Categories</h4></div>
                     <hr />
                   
@@ -201,7 +200,7 @@ const Home = () => {
                                     console.log(data[ind].data,"is here")
                                     return(
                                        
-                                    <div className="col-2 card p-2 sectBody">                                                                                                            
+                                    <div className="col-12 card p-2 sectBody">                                                                                                            
                                         <img  src={data[ind].data.image} className="CategoriesIcon" />:                                        
                                         <h3 className="mt-3 cardt">{data[ind].data.name}</h3>
                                         </div>                                                                       
