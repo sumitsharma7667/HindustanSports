@@ -1,18 +1,104 @@
 import React, { useState, useEffect } from "react"
 import firebaseDb from "./firebase"
+var isorder=[]
 const Cart = (props) => {
     useEffect(() => {
-        getdata(props.match.params.id)
+    getdata(props.match.params.id)
+    getcartdata()
     }, [])
-    const [data, setdata] = useState("")
+    const [productkey,setproductkey]=useState()
+    const [data, setdata] = useState("") 
+    const [quentity, Setquentity] = useState(1)
+    const [order1, Setorder1] = useState([]) 
+    const [cartid,setcartid]=useState()  
     const getdata = async (id) => {
-        await firebaseDb.child("Products/" + id).on("value", function (onSnapshot) {
+        await firebaseDb.child("Products/"+id).on("value", function (onSnapshot) {
         setdata(onSnapshot.val())
+        setproductkey(onSnapshot.key)     
         })
     }
+    const getcartdata = () => {
+        firebaseDb.child("Cart").on("value",function (onSnapshot) {    
+            onSnapshot.forEach(item => {            
+               if(item.val().userid=="1234"){
+                isorder=item.val()                
+                setcartid(item.key)
+               }
+            })                                                              
+        })                
+    }
+    const cartfunction=async(productid,name,image,price,index,) => {
+        const addcartdata = () => {                               
+            var obj = {
+                userid:"1234",
+                order:order1                
+            }
+            firebaseDb.child("Cart").push(
+                obj
+                , err => {
+                    if (err) {
+                        console.log(err)
+                    }
+                }
+            ).then(()=>{
+                alert("data insert Sucessfully")            
+                // Setorder1([])
+            })
+        }        
+        if (quentity !== 0) {
+            var merged = false
+            var newItemObj = {
+                "productid":productid,
+                "name": name,                
+                "image": image,
+                "quantity": quentity,               
+                "price":JSON.parse(price),           
+            }                      
+            if (isorder==null||isorder==""||isorder==[]) {  
+                console.log("inside if")          
+                for (var i = 0; i < order1.length; i++) {
+                    if (order1[i].productid==newItemObj.productid) {
+                        order1[i].quantity+=newItemObj.quantity
+                        order1[i].price+=newItemObj.price                    
+                        merged=true                      
+                    }
+                }
+                if (!merged) {
+                   await order1.push(newItemObj)                                                       
+                } 
+                addcartdata()            
+            }
+            else { 
+                console.log("inside else")   
+                console.log(isorder)                 
+                for (var i = 0; i < isorder.order.length; i++) {              
+                    if (isorder.order[i].productid == newItemObj.productid) {
+                        isorder.order[i].quantity += newItemObj.quantity
+                        isorder.order[i].price += newItemObj.price                  
+                        merged = true                        
+                    }
+                }
+                if (!merged) { 
+                   console.log("outside the loop",newItemObj,isorder)
+                   await isorder.order.push(newItemObj)                                 
+                } 
+                 updatecart(isorder.order)
+                console.log(isorder,"here")        
+            }
+        }
+    }
+    const updatecart=(order)=>{
+        var  obj={
+         userid:"1234",
+         order:order
+        }
+         firebaseDb.child("Cart/"+cartid).update(obj) 
+         .then(()=>{
+             alert("Updated Successfully")
+         })
+     }
     if (data.description !== undefined)
      {
-
         return (
             <>
                 <header>
@@ -147,7 +233,7 @@ const Cart = (props) => {
                         <div className="container">
                             <div className="row">
                                 <div className="col-4">
-                                    <button className="btn btn-primary">
+                                    <button className="btn btn-primary" onClick={()=>{cartfunction(productkey,data.name,data.image,data.saleprice)}}>
                                         Add to Cart
                             </button>
                                 </div>

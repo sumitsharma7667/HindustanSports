@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-class Addcart extends Component {
-    render() {
+import React, {useState,useEffect } from "react";
+const Addcart  =()=> {
+    
         return (
             <React.Fragment>
                  <header>
@@ -470,6 +470,5 @@ class Addcart extends Component {
                 </footer>
             </React.Fragment>
         )
-    }
 }
 export default Addcart
