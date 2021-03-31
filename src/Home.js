@@ -6,6 +6,27 @@ import { Link } from "react-router-dom";
 import $ from 'jquery';
 import firebaseDb from "./firebase"
 import "./style.css"
+// import Carousel from "react-multi-carousel";
+// import "react-multi-carousel/lib/styles.css";
+const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1
+  }
+};
 const Home = () => {
     useEffect(() => {
         getdata()
@@ -146,26 +167,27 @@ const Home = () => {
                         </div>
                     </div>
                 </section>
+                {/* Image section */}
                 <section className="imagesSect mt-3">
-                    <div className="container">
+                    <div className="container-fluid">
                         <div className="row imageRow">
                             <div className="col-md-6">
-                                <img src={data[1].data.image[0]} className="w-100  mb-4 firstrowImg"/>
+                                <img src={data[1].data.image[0]} className="firstrowImg"/>
                             </div>
                             <div className="col-md-6 colSixsec">
                                 <div className="row seconRow">
-                                    <div className="col-md-6">
+                                    <div className="col-md-6 colImgsec">
                                         <img src={data[2].data.image[0]} className="w-100 s mb-4 firstrowImg imgClas firstImgSec" />
                                     </div>
-                                    <div className="col-md-6  ">
+                                    <div className="col-md-6 colImgsec ">
                                         <img src={data[2].data.image[1]} className="  mb-4 firstrowImg imgClasSec" />
                                     </div>
                                      </div>
                                 <div className="row seconRow">
-                                    <div className="col-md-6  ">
+                                    <div className="col-md-6 colImgsec ">
                                         <img src={data[3].data.image[0]} className="w-100  mb-4 firstrowImg imgClas" />
                                     </div>
-                                    <div className="col-md-6 ">
+                                    <div className="col-md-6 colImgsec">
                                         <img src={data[3].data.image[1]} className=" mb-4 firstrowImg imgClasSec" />
                                     </div>
                                 </div>
@@ -184,9 +206,11 @@ const Home = () => {
                         </div>
                     </div>
                 </section >
+                {/* Categories section */}
                 <section className=" thirdSec">
                     <div className="headCat"><h4>Categories</h4></div>
                     <hr />
+                    <Carousel responsive={responsive}>
                     <div className="container">
                         <div className="row">
                             {
@@ -225,7 +249,8 @@ const Home = () => {
                                 <h3 className="mt-3 cardt">Badminton</h3>
                             </div> */}
                         </div>
-                    </div>
+                        </div>
+                        </Carousel>;
                 </section>
                 <div className="headCat mt-4"><h4>FEATURED</h4></div>
                 <div className="container mb-3">
