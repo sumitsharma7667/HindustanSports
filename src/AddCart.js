@@ -150,8 +150,14 @@ class Addcart extends Component {
                             </div>
                             </div>
                             <div className="col-md-4">
-                                <div className="card colFouraddCart">
-
+                                <div className="card colFouraddCart p-3">
+                                    <div className="border p-5 borderInaddcart">
+                                        <h5>Subtotal</h5>
+                                        <h6>(2 items): $7,006</h6>
+                                        <div>
+                                            <button className="btn btn-primary">Place order</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
