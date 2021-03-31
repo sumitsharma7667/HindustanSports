@@ -12,7 +12,8 @@ const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 5
+    items: 3,
+    slidesToSlide: 3
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -34,25 +35,6 @@ const Home = () => {
     },[])
     const [data, setdata] = useState([])
     const [category, setcategory] = useState([])
-    const responsive = {
-        superLargeDesktop: {
-            // the naming can be any, depends on you.
-            breakpoint: { max: 4000, min: 3000 },
-            items: 5
-        },
-        desktop: {
-            breakpoint: { max: 3000, min: 1024 },
-            items: 6
-        },
-        tablet: {
-            breakpoint: { max: 1024, min: 464 },
-            items: 2
-        },
-        mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 1
-        }
-    };
     const getCategory = () => {
         firebaseDb.child("Catogery").on("value", function (onSnapshot) {
             let tempdata = []
@@ -210,20 +192,24 @@ const Home = () => {
                 <section className=" thirdSec">
                     <div className="headCat"><h4>Categories</h4></div>
                     <hr />
-                    <Carousel responsive={responsive}>
+                  
                     <div className="container">
-                        <div className="row">
+                        <div className="row"> 
+                        <Carousel responsive={responsive}>                      
                             {
                                 category.map((el,ind)=>{
                                     console.log(data[ind].data,"is here")
                                     return(
-                                    <div className="col-2 card p-2 sectBody">                                        
-                                            <img  src={data[ind].data.image} className="CategoriesIcon" />:                                        
+                                       
+                                    <div className="col-2 card p-2 sectBody">                                                                                                            
+                                        <img  src={data[ind].data.image} className="CategoriesIcon" />:                                        
                                         <h3 className="mt-3 cardt">{data[ind].data.name}</h3>
-                                    </div>
+                                        </div>                                                                       
+                                 
                                     )
                                 })
                             }
+                               </Carousel>
                             {/* <div className="col-2 card p-2 sectBody">
                                 <img src={require("./images/badminton.png").default} className="CategoriesIcon" />
                                 <h3 className="mt-3 cardt">Badminton</h3>
@@ -250,7 +236,7 @@ const Home = () => {
                             </div> */}
                         </div>
                         </div>
-                        </Carousel>;
+                    
                 </section>
                 <div className="headCat mt-4"><h4>FEATURED</h4></div>
                 <div className="container mb-3">
