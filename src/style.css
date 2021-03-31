@@ -693,3 +693,8 @@ color: #fff;
     display: flex;
     height: 100%;
 }
+.loader{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}

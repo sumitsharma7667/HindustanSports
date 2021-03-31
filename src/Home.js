@@ -457,8 +457,9 @@ const Home = () => {
     }
     else {
         return (
-            <>
-            </>
+            <div className="loader">
+            <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_lz5rbiit.json"  background="transparent"  speed="1"  style={{width:400,height:"100%",margin:"auto"}}loop  autoplay></lottie-player>
+       </div>
         )
     }
 }
