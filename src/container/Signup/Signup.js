@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 import firebaseDb from "../../firebase"
 import { auth } from "../../firebase"
 import { Link } from "react-router-dom";
-const SignupPage=()=> {    
+    const SignupPage=()=> {    
     const[email,setemail]=useState("Sumit")
     const[password,setpassword]=useState("123123")
     const mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;

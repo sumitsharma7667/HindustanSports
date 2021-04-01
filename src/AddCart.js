@@ -18,7 +18,7 @@ const Addcart = () => {
             })
         })
     }
-    if (data !== undefined) {
+    if (data!== undefined) {
         return (
             <React.Fragment>
                 <Header/>

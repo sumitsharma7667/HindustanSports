@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react"
 import firebaseDb from "./firebase"
 import Header from "./Header"
+import {
+    Magnifier,
+    GlassMagnifier,
+    SideBySideMagnifier,
+    PictureInPictureMagnifier,
+    MOUSE_ACTIVATION,
+    TOUCH_ACTIVATION
+  } from "react-image-magnifiers";
 var isorder=[]
 const Cart = (props) => {
     useEffect(() => {
@@ -166,8 +174,7 @@ const Cart = (props) => {
                             </div>
                             <div className="col-6 border-right firstSecR">
                                 {/* <img src={require("./images/Adishoe.png").default} className="SixColImg" /> */}
-                                <img src={data.image[0]} className="SixColImg" />
-
+                                <img src={data.image[0]} className="SixColImg" />                                
                             </div>
                             <div className="col-4 border">
                                 <div className="row lastcolP ">
