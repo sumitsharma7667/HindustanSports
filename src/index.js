@@ -17,6 +17,7 @@ import Addcategory from "./Addcategory"
 import Addbrand from "./Addbrand"
 import Cart from "./Cart"
 import Addcart from "./AddCart"
+import Profile from "./Profile"
 import SignupPage from "./container/Signup/Signup"
 const AppRoute = ({component:Component,layout:Layout, ...rest})=>(
   <Route {...rest} render ={props=>(
@@ -39,6 +40,7 @@ ReactDOM.render(
         <Route path="/about" component={about} />
         <Route path="/Singleproduct/:id" component={Cart} />
         <Route path="/Addcart" component={Addcart} />
+        <Route path="/Profile" component={Profile}/>
         <Route path="/login" component={LoginPage} />
         <Route path="/Signup" component={SignupPage}/>
         <Route path="/" exect component={Home} />

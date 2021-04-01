@@ -86,43 +86,39 @@ const Addcart = () => {
                                 {data.order.map((el, ind) => {
                                     totalamount=JSON.parse(el.price)+totalamount
                                     return (
-                                        <div className="row card ImgCardCat">
-                                            <div className="col-md-12">
-                                                <div className="row">
-                                                    <div className="col-4 imgColaddcart">                                                        
-                                                        <img  src={el.image[0]} className="imageAddcart" />:                                        
+                                        <div className="row card mt-2">
+                                            <div className="col-md-12 ">
+                                                <div className="row ImgCardCat">
+                                                    <div className="col-4 imgColaddcart ImgCardCat">                                                        
+                                                        <img  src={el.image[0]} className="imageAddcart" />                                        
                                                     </div>
-                                                    <div className="col-8">
-                                                        <div className="row">
-                                                            <div className="col-12">
-                                                                <h4>el.name</h4>
-                                                            </div>
-                                                        </div>
-                                                        <div className="row">
-                                                            <div className="col-12">
-                                                                <div className="priceOfProd">
-                                                                    <label>Qty:</label>
-                                                                    <p>{el.quantity}</p>
+                                                    <div className="col-4 addCartColFous">
+                                                          
+                                                        <div className="priceOfProd">
+                                                            <h4>{el.name}</h4>
+                                                                    <label>Qty: <i class="fas fa-plus-circle"></i> <span>{el.quantity}</span> <i class="fas fa-minus-circle"></i></label>
                                                                     <h6>Price: {el.price}</h6>
-                                                                </div>
+                                                                    <label>Size: <i class="fas fa-plus-circle"></i> <span>{el.quantity}</span> <i class="fas fa-minus-circle"></i></label>
                                                             </div>
-                                                        </div>
                                                     </div>
+                                                    <div className="col-4 addCartlastcol">
+                                                        <h6>Delivery by Mon Apr 5 | ₹40</h6>
+                                                        <button className="btn btn-primary">Save for latter</button>
+                                                        <button className="btn btn-primary ">Remove</button>
+                                                        </div>
                                                 </div>
                                             </div>
                                         </div>
                                     )
-                                })}
-
-                                
+                                })}                                
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-md-4 mt-2">
                                 <div className="card colFouraddCart p-3">
                                     <div className="border p-5 borderInaddcart">
                                         <h5>Subtotal</h5>
                                         <h6>(2 items): {totalamount}</h6>
                                         <div>
-                                            <button className="btn btn-primary">Place order</button>
+                                            <button className="btn btn-primary addcartBtn">Place order</button>
                                         </div>
                                     </div>
                                 </div>

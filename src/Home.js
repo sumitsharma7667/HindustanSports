@@ -112,35 +112,38 @@ const Home = () => {
                 <section className="imagesSect mt-3">
                     <div className="container">
                         <div className="row imageRow">
-                            <div className="col-md-6">
-                                <img src={data[1].data.image[0]} className="firstrowImg"/>
+                            <div className="col-md-6 imgHoverEffectCol hoverOverlay">
+                                <img src={data[1].data.image[0]} className="firstrowImg imgHoverEffect" />
+                               <div className="HoveImgText">
+                                <h1 className="imageText">Football</h1>
+                                </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="row seconRow">
-                                    <div className="col-md-6 colImgsec">
+                                    <div className="col-md-6 colImgsec imgHoverEffectCol">
                                         <img src={data[2].data.image[0]} className="firstrowImg imgClas firstImgSec" />
                                     </div>
-                                    <div className="col-md-6 colImgsec ">
+                                    <div className="col-md-6 colImgsec imgHoverEffectCol">
                                         <img src={data[2].data.image[1]} className="firstrowImg imgClas firstImgSec" />
                                     </div>
                                     
-                                    <div className="col-md-6 colImgsec ">
+                                    <div className="col-md-6 colImgsec imgHoverEffectCol">
                                         <img src={data[3].data.image[0]} className="firstrowImg imgClas firstImgSec" />
                                     </div>
-                                    <div className="col-md-6 colImgsec">
+                                    <div className="col-md-6 colImgsec imgHoverEffectCol">
                                         <img src={data[3].data.image[1]} className="firstrowImg imgClas firstImgSec" />
                                     </div>
                                      </div>
                             </div>
                       </div>
                         <div className="row">
-                            <div className="col-3 colImgsec ">
+                            <div className="col-3 colImgsec imgHoverEffectCol ">
                                 <img src={require("./images/cricketer.png").default} className="ImagesClas cricketimg" />
                             </div>
-                            <div className="col-3 colImgsec ">
+                            <div className="col-3 colImgsec imgHoverEffectCol ">
                                 <img src={require("./images/kit.jpg").default} className="ImagesClas" />
                             </div>
-                            <div className="col-6 colImgsec">
+                            <div className="col-6 colImgsec imgHoverEffectCol">
                                 <img src={require("./images/18-SM268387.jpg").default} className="ImagesClas imgClas" />
                             </div>
                         </div>
@@ -159,7 +162,7 @@ const Home = () => {
                                     console.log(data[ind].data,"is here")
                                     return(
                                        
-                                    <div className="col-12 card p-2 sectBody">                                                                                                            
+                                    <div className="col-12 card p-2 sectBody">                                                                                                    
                                         <img  src={data[ind].data.image} className="CategoriesIcon" />:                                        
                                         <h3 className="mt-3 cardt">{data[ind].data.name}</h3>
                                         </div>                                                                       
@@ -204,17 +207,21 @@ const Home = () => {
                             if(data[ind].data.producttype=="featured"&&ind<=7){
                              return(
                             <div className="col-md-3 mt-4">
-                            <div class="card cardPrice">
+                                     <div class="card cardPrice">
+                                         <div class="col-12 colFeatureddny">
                                 <div class="imgbx">
                                 <img src={data[ind].data.image[0]} className=""/>
                                     {/* <img src={require("./images/207546-200.png").default} className="" /> */}
                                     {/* <img src="./BX7E-02E_High_Large_TOP_2000x.png" style="width: 300px;" alt=""> */}
-                                </div>
+                                             </div>
+                                             </div>
+                                        <div class=" col-12 colFeatureddny">
                                 <div class="contentBx">
                                     <h3>lethered Basketball</h3>
                                     <h2 class="price">$20.<small>99</small></h2>
                                     <Link to={"Singleproduct/"+el.key} class="buyNow">Buy Now</Link>
-                                </div>
+                                             </div>
+                                             </div>
                             </div>
                         </div>
                         )  
@@ -291,7 +298,6 @@ const Home = () => {
                                 <h4>ABOUT US</h4>
                                 <span>
                                 <p>Who we are</p>
-                                 <p>Decathalon CSR</p>
                                 <p>Careers</p>
                                 <p>News Room</p>
                                     <p>Made in India</p>
