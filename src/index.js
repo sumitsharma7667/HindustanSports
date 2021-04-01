@@ -24,24 +24,23 @@ const AppRoute = ({component:Component,layout:Layout, ...rest})=>(
   )}></Route>
   )
 ReactDOM.render(
-  <BrowserRouter >
-      <Switch>
-        <MyContextprovider>
-        
+  <BrowserRouter >  
+   <Switch>
+        <MyContextprovider> 
         <AppRoute path ="/productform" layout={AdminLayout} component={Productform} />
         <AppRoute path ="/dashboard" layout={AdminLayout} component={Dashboard} />
         <AppRoute path ="/Addcategory" layout={AdminLayout} component={Addcategory} />
         <AppRoute path="/Dashboard" layout={AdminLayout} component={Dashboard} />
-        <AppRoute path="/addbrand" layout={AdminLayout} component={Addbrand} />
-        
-        <Route path="/Home" component={Home} />
-        {/* <Route path="/Singleproduct"component={Singleproduct}/> */}
+        <AppRoute path="/addbrand" layout={AdminLayout} component={Addbrand} />  
+
+                            
+        <Route path="/Home" component={Home} />    
         <Route path="/about" component={about} />
         <Route path="/Singleproduct/:id" component={Cart} />
         <Route path="/Addcart" component={Addcart} />
         <Route path="/login" component={LoginPage} />
         <Route path="/Signup" component={SignupPage}/>
-        <Route path="/" exect component={Home} />
+        <Route exact path="/" component={Home}/>
         </MyContextprovider>      
       </Switch>        
   </BrowserRouter>,
