@@ -624,6 +624,10 @@ color: #fff;
     border-radius: 5px;
 }
 /* Login Page */
+.loginLogo{
+    height: 100PX;
+    width: 230px;
+}
 .loginImg{
     width: 100%;
     height: 100%;

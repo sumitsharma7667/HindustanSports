@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from "react";
 import firebaseDb from "../../firebase"
-import {auth} from "../../firebase"
+import { auth } from "../../firebase"
+import { Link } from "react-router-dom";
 const SignupPage=()=> {    
     const[email,setemail]=useState("Sumit")
     const[password,setpassword]=useState("123123")
@@ -30,8 +31,7 @@ const SignupPage=()=> {
                             <div className="loginForm">
                             <div className="row headingLog">
                                 <div className="col-12">
-                                   <h3>Welcome</h3>
-                                    <h4>Sign Up</h4>
+                                 <Link to="Home"><img src={require("../../images/logo (1).png").default} className="loginLogo" /></Link>
                                 </div>
                             </div>
                             <div className="row">
@@ -48,7 +48,7 @@ const SignupPage=()=> {
                                 <div className="row mt-3">
                                     <div className=" col-6">
                                     <input type="checkbox" id="" name="" value=""/>
-                                        <label for="vehicle1">Remember me </label>
+                                        <label for="vehicle1">Remember me</label>
                                     </div>
                                     <div className="col-6 fogetLog">
                                         <h6>Forget Password?</h6>
