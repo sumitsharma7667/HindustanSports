@@ -46,13 +46,6 @@ import { Link } from "react-router-dom";
                                     <input type="password" className="form-control inputLog" onChange={(e)=>{setpassword(e.target.value)}} />                                    
                                      </div>
                                 <div className="row mt-3">
-                                    <div className=" col-6">
-                                    <input type="checkbox" id="" name="" value=""/>
-                                        <label for="vehicle1">Remember me</label>
-                                    </div>
-                                    <div className="col-6 fogetLog">
-                                        <h6>Forget Password?</h6>
-                                       </div>
                                 </div>
                             </div>
                             <div className="row mt-3">
