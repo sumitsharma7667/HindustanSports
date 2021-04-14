@@ -19,6 +19,7 @@ import Cart from "./Cart"
 import Addcart from "./AddCart"
 import Profile from "./Profile"
 import SignupPage from "./container/Signup/Signup"
+import Checkout from "./Checkout"
 const AppRoute = ({component:Component,layout:Layout, ...rest})=>(
   <Route {...rest} render ={props=>(
     <Layout><Component {...props}> </Component></Layout>
@@ -37,11 +38,13 @@ ReactDOM.render(
                             
         <Route path="/Home" component={Home} />    
         <Route path="/about" component={about} />
-        <Route path="/Singleproduct/:id" component={Cart} />
+        {/* <Route path="/Singleproduct/:id" component={Cart} /> */}
+        <Route path="/Singleproduct/:id" component={Singleproduct} />
         <Route path="/Addcart" component={Addcart} />
         <Route path="/Profile" component={Profile}/>
         <Route path="/login" component={LoginPage} />
         <Route path="/Signup" component={SignupPage}/>
+        <Route exact path="/checkout" component={Checkout}/>
         <Route exact path="/" component={Home}/>
         </MyContextprovider>      
       </Switch>        

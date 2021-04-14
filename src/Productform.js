@@ -134,17 +134,17 @@ var imageurl=[]
     }
     const tabledata = [];
     {
-    data.map((item, index) => {
-    tabledata.push({ "sr_no": index + 1,"name": item.data.name,"quentity":item.data.quentitiy, "description": item.data.description, "action": <p><button className="btn btn-secondary mr-2" onClick={() =>editProduct(item.data,item.key)}><i class="fas fa-pencil-alt"></i></button><button className="btn btn-danger" onClick={() =>deleteproduct(item.key)}><i className="fa fa-trash" aria-hidden="true" ></i></button> </p> })
+    data.reverse().map((item, index) => {
+    tabledata.push({ "sr_no": index + 1,"name": item.data.name,"quentity":item.data.quentitiy, "description": item.data.description,"image":item.data.image,"action": <p><button className="btn btn-secondary mr-2" onClick={() =>editProduct(item.data,item.key)}><i class="fas fa-pencil-alt"></i></button><button className="btn btn-danger" onClick={() =>deleteproduct(item.key)}><i className="fa fa-trash" aria-hidden="true" ></i></button> </p> })
     })
     }
-
     const columns = [
         { title: "SR NO", data: "sr_no" },        
         { title: 'Name', data: "name" },
         { title: "Quentity",data:"quentity"},
         { title: 'Description', format: (row) => <em>{row.description}</em> },   
         { title: "Action", data: "action" },
+        {title:"image",data:"image"}
     ];
     return (
         <>
