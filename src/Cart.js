@@ -20,12 +20,22 @@ const Cart = (props) => {
     const [quentity, Setquentity] = useState(1)
     const [order1, Setorder1] = useState([]) 
     const [cartid,setcartid]=useState()  
+    const [quentitiy,setquentitiy]=useState()
     const getdata = async (id) => {
         await firebaseDb.child("Products/"+id).on("value", function (onSnapshot) {
         setdata(onSnapshot.val())
         setproductkey(onSnapshot.key)     
         })
-    }    
+    }  
+    if(data!==undefined){
+    getrelatedproduct()
+    }
+    const getrelatedproduct = async (id) => {
+        await firebaseDb.child("Products/"+data.categoryid).on("value", function (onSnapshot) {
+        setdata(onSnapshot.val())
+        setproductkey(onSnapshot.key)     
+        })
+    }  
     const getcartdata = () => {
         firebaseDb.child("Cart").on("value",function (onSnapshot) {    
             onSnapshot.forEach(item => {            

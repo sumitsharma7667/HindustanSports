@@ -20,6 +20,7 @@ import Addcart from "./AddCart"
 import Profile from "./Profile"
 import SignupPage from "./container/Signup/Signup"
 import Checkout from "./Checkout"
+import Productlist from "./productlist"
 const AppRoute = ({component:Component,layout:Layout, ...rest})=>(
   <Route {...rest} render ={props=>(
     <Layout><Component {...props}> </Component></Layout>
@@ -45,6 +46,7 @@ ReactDOM.render(
         <Route path="/login" component={LoginPage} />
         <Route path="/Signup" component={SignupPage}/>
         <Route exact path="/checkout" component={Checkout}/>
+        <Route exact path="/productlist" component={Productlist}/>
         <Route exact path="/" component={Home}/>
         </MyContextprovider>      
       </Switch>        

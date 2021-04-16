@@ -1,7 +1,99 @@
-import React from "react"
+import React,{useEffect,useState} from "react"
 import "./style.css"
 import Carousel from "react-multi-carousel";
-const Singleproduct=()=>{
+import firebaseDb from "./firebase"
+import { Link } from "react-router-dom";
+import Header from "./Header"
+import Footer from "./Footer"
+var isorder=[]
+const Singleproduct=(props)=>{
+    useEffect(() => {
+        getdata(props.match.params.id)
+        // getcartdata()
+        }, [])
+        const [productkey,setproductkey]=useState()
+        const [data, setdata] = useState("") 
+        const [quantity, Setquantity] = useState(1)
+        const [order1, Setorder1] = useState([]) 
+        const [cartid,setcartid]=useState()  
+        const [image,setimage]=useState()
+        const getdata = async (id) => {
+            await firebaseDb.child("Products/"+id).on("value",function(onSnapshot){
+            setdata(onSnapshot.val())
+            setproductkey(onSnapshot.key) 
+            //setimage(data.image)                                    
+            })
+        } 
+        const getcartdata = () => {
+            firebaseDb.child("Cart").on("value",function (onSnapshot) {    
+                onSnapshot.forEach(item => {            
+                   if(item.val().userid=="1234"){
+                    isorder=item.val()                
+                    setcartid(item.key)
+                   }
+                })                                                              
+            })                
+        }
+        const cartfunction=async(productid,name,image,price,index,) => {
+            const addcartdata = () => {                               
+                var obj = {
+                    userid:"1234",
+                    order:order1                
+                }
+                firebaseDb.child("Cart").push(
+                    obj
+                    , err => {
+                        if (err) {
+                            console.log(err)
+                        }
+                    }
+                ).then(()=>{
+                    alert("data insert Sucessfully")            
+                    // Setorder1([])
+                })
+            }        
+            if (quantity !== 0) {
+                var merged = false
+                var newItemObj = {
+                    "productid":productid,
+                    "name": name,                
+                    "image": image,
+                    "quantity": quantity,               
+                    "price":JSON.parse(price),           
+                }                      
+                if (isorder==null||isorder==""||isorder==[]) {  
+                    console.log("inside if")          
+                    for (var i = 0; i < order1.length; i++) {
+                        if (order1[i].productid==newItemObj.productid) {
+                            order1[i].quantity+=newItemObj.quantity
+                            order1[i].price+=newItemObj.price                    
+                            merged=true                      
+                        }
+                    }
+                    if (!merged) {
+                       await order1.push(newItemObj)                                                       
+                    } 
+                    addcartdata()            
+                }
+                else { 
+                    console.log("inside else")   
+                    console.log(isorder)                 
+                    for (var i = 0; i < isorder.order.length; i++) {              
+                        if (isorder.order[i].productid == newItemObj.productid) {
+                            isorder.order[i].quantity += newItemObj.quantity
+                            isorder.order[i].price += newItemObj.price                  
+                            merged = true                        
+                        }
+                    }
+                    if (!merged) { 
+                       console.log("outside the loop",newItemObj,isorder)
+                       await isorder.order.push(newItemObj)                                 
+                    } 
+                     updatecart(isorder.order)
+                    console.log(isorder,"here")        
+                }
+            }
+        }
     const responsive = {
         superLargeDesktop: {
           // the naming can be any, depends on you.
@@ -59,65 +151,30 @@ const Singleproduct=()=>{
           items: 1
         }
       };
+      const updatecart=(order)=>{
+        var  obj={
+         userid:"1234",
+         order:order
+        }
+         firebaseDb.child("Cart/"+cartid).update(obj) 
+         .then(()=>{
+             alert("Updated Successfully")
+         })
+     }
+  const cartQuentity=(e)=>{
+     
+if(quantity>=1&&e=="Plus"){ 
+Setquantity(quantity+1)
+}
+if(quantity>1&&e=="Minus"){
+Setquantity(quantity-1)
+}
+  }
     return(
         <>
-        {/* <!-- Top bar Start --> */}
-        <div className="top-bar">
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-sm-6">
-                        <i className="fa fa-envelope"></i>
-                        support@email.com
-                    </div>
-                    <div className="col-sm-6">
-                        <i className="fa fa-phone-alt"></i>
-                        +012-345-6789
-                    </div>
-                </div>
-            </div>
-        </div>
-        {/* <!-- Top bar End --> */}
-        
-        {/* <!-- Nav Bar Start --> */}
-        <div className="nav">
-            <div className="container-fluid">
-                <nav className="navbar navbar-expand-md bg-dark navbar-dark">
-                    <a href="#" className="navbar-brand">MENU</a>
-                    <button type="button" className="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div className="navbar-nav mr-auto">
-                            <a href="index.html" className="nav-item nav-link">Home</a>
-                            <a href="product-list.html" className="nav-item nav-link">Products</a>
-                            <a href="product-detail.html" className="nav-item nav-link active">Product Detail</a>
-                            <a href="cart.html" className="nav-item nav-link">Cart</a>
-                            <a href="checkout.html" className="nav-item nav-link">Checkout</a>
-                            <a href="my-account.html" className="nav-item nav-link">My Account</a>
-                            <div className="nav-item dropdown">
-                                <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
-                                <div className="dropdown-menu">
-                                    <a href="wishlist.html" className="dropdown-item">Wishlist</a>
-                                    <a href="login.html" className="dropdown-item">Login & Register</a>
-                                    <a href="contact.html" className="dropdown-item">Contact Us</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="navbar-nav ml-auto">
-                            <div className="nav-item dropdown">
-                                <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
-                                <div className="dropdown-menu">
-                                    <a href="#" className="dropdown-item">Login</a>
-                                    <a href="#" className="dropdown-item">Register</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </div>
-        {/* <!-- Nav Bar End -->       */}
+        {/* Header start */}
+        <Header/>
+           {/* Header end */}
         
         {/* <!-- Bottom Bar Start --> */}
         <div className="bottom-bar">
@@ -175,7 +232,12 @@ const Singleproduct=()=>{
                             <div className="row align-items-center">
                                 <div className="col-md-5">
                                     <div className="product-slider-single normal-slider">
-                                    <img src={require("./images/product-1.jpg").default} alt="Logo"/>
+                                    {data.image!==undefined?
+                                     <img src={data.image} alt=" Product Image"/>
+                                    :
+                                    null
+                                    }
+                                   
                                     {/* <img src={require("./images/product-2.jpg").default} alt="Logo"/>
                                     <img src={require("./images/product-3.jpg").default} alt="Logo"/>
                                     <img src={require("./images/product-4.jpg").default} alt="Logo"/>
@@ -184,40 +246,48 @@ const Singleproduct=()=>{
                                    
                                     </div>
                                     <div className="product-slider-single-nav normal-slider">
-                                    <Carousel responsive={responsive1}>
-                                        <div className="slider-nav-img"> <img src={require("./images/product-1.jpg").default} alt="Logo"/></div>
-                                        <div className="slider-nav-img"> <img src={require("./images/product-2.jpg").default} alt="Logo"/></div>
-                                        <div className="slider-nav-img"> <img src={require("./images/product-3.jpg").default} alt="Logo"/></div>
-                                        <div className="slider-nav-img"> <img src={require("./images/product-4.jpg").default} alt="Logo"/></div>
-                                        <div className="slider-nav-img"> <img src={require("./images/product-5.jpg").default} alt="Logo"/></div>
-                                        <div className="slider-nav-img"> <img src={require("./images/product-1.jpg").default} alt="Logo"/></div>
-                                        <div className="slider-nav-img"> <img src={require("./images/product-2.jpg").default} alt="Logo"/></div>
-                                        <div className="slider-nav-img"> <img src={require("./images/product-3.jpg").default} alt="Logo"/></div>
-                                        <div className="slider-nav-img"> <img src={require("./images/product-4.jpg").default} alt="Logo"/></div>
-                                        <div className="slider-nav-img"> <img src={require("./images/product-5.jpg").default} alt="Logo"/></div>
-                                    </Carousel>
+                                   {data.image!==undefined?
+                                      <Carousel responsive={responsive1}>                                  
+                                      {data.image.map((el,ind)=>{
+                                          return(
+                                              <div className="slider-nav-img"> <img src={el} alt="image" onClick={()=>{setimage(el)}} /></div>
+                                          )
+                                      })}
+                                      {/* // <div className="slider-nav-img"> <img src={require("./images/product-1.jpg").default} alt="Logo"/></div>
+                                      // <div className="slider-nav-img"> <img src={require("./images/product-2.jpg").default} alt="Logo"/></div>
+                                      // <div className="slider-nav-img"> <img src={require("./images/product-3.jpg").default} alt="Logo"/></div>
+                                      // <div className="slider-nav-img"> <img src={require("./images/product-4.jpg").default} alt="Logo"/></div>
+                                      // <div className="slider-nav-img"> <img src={require("./images/product-5.jpg").default} alt="Logo"/></div>
+                                      // <div className="slider-nav-img"> <img src={require("./images/product-1.jpg").default} alt="Logo"/></div>
+                                      // <div className="slider-nav-img"> <img src={require("./images/product-2.jpg").default} alt="Logo"/></div>
+                                      // <div className="slider-nav-img"> <img src={require("./images/product-3.jpg").default} alt="Logo"/></div>
+                                      // <div className="slider-nav-img"> <img src={require("./images/product-4.jpg").default} alt="Logo"/></div>
+                                      // <div className="slider-nav-img"> <img src={require("./images/product-5.jpg").default} alt="Logo"/></div> */}
+                                  </Carousel>                                   
+                                   :null}                                 
                                     </div>
                                 </div>
                                 <div className="col-md-7">
                                     <div className="product-content">
-                                        <div className="title"><h2>Product Name</h2></div>
+                                        <div className="title"><h2>{data.name}</h2></div>
                                         <div className="ratting">
                                             <i className="fa fa-star"></i>
                                             <i className="fa fa-star"></i>
                                             <i className="fa fa-star"></i>
                                             <i className="fa fa-star"></i>
-                                            <i className="fa fa-star"></i>
+                                            <i className="fa fa-star"></i> 
+
                                         </div>
                                         <div className="price">
                                             <h4>Price:</h4>
-                                            <p>$99 <span>$149</span></p>
+                                            <p>{data.saleprice} <span>{data.regularprice}</span></p>
                                         </div>
                                         <div className="quantity">
                                             <h4>Quantity:</h4>
                                             <div className="qty">
-                                                <button className="btn-minus"><i className="fa fa-minus"></i></button>
-                                                <input type="text" value="1"/>
-                                                <button className="btn-plus"><i className="fa fa-plus"></i></button>
+                                                <button className="btn-minus" onClick={()=>{cartQuentity("Minus")}}><i className="fa fa-minus"></i></button>
+                                                <input type="text" value={quantity}/>
+                                                <button className="btn-plus" onClick={()=>{cartQuentity("Plus")}}><i className="fa fa-plus"></i></button>
                                             </div>
                                         </div>
                                         <div className="p-size">
@@ -232,14 +302,17 @@ const Singleproduct=()=>{
                                         <div className="p-color">
                                             <h4>Color:</h4>
                                             <div className="btn-group btn-group-sm">
-                                                <button type="button" className="btn">White</button>
-                                                <button type="button" className="btn">Black</button>
-                                                <button type="button" className="btn">Blue</button>
+                                                <button type="button" className="btn"> {data.color}
+                                               </button>
+                                                {/* <button type="button" className="btn"> {data.color}
+                                               </button>
+                                                <button type="button" className="btn"> {data.color}
+                                               </button> */}
                                             </div> 
                                         </div>
                                         <div className="action">
-                                            <a className="btn" href="#"><i className="fa fa-shopping-cart"></i>Add to Cart</a>
-                                            <a className="btn" href="#"><i className="fa fa-shopping-bag"></i>Buy Now</a>
+                                         <Link to={"/addcart"} className="btn" onClick={()=>{cartfunction(productkey,data.name,data.image,data.saleprice)}}><i className="fa fa-shopping-cart"></i>Add to Cart</Link>
+                                            <Link to={"/checkout"} className="btn"><i className="fa fa-shopping-bag"></i>Buy Now</Link>
                                         </div>
                                     </div>
                                 </div>
@@ -264,7 +337,7 @@ const Singleproduct=()=>{
                                     <div id="description" className="container tab-pane active">
                                         <h4>Product description</h4>
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum quam ac mi viverra dictum. In efficitur ipsum diam, at dignissim lorem tempor in. Vivamus tempor hendrerit finibus. Nulla tristique viverra nisl, sit amet bibendum ante suscipit non. Praesent in faucibus tellus, sed gravida lacus. Vivamus eu diam eros. Aliquam et sapien eget arcu rhoncus scelerisque. Suspendisse sit amet neque neque. Praesent suscipit et magna eu iaculis. Donec arcu libero, commodo ac est a, malesuada finibus dolor. Aenean in ex eu velit semper fermentum. In leo dui, aliquet sit amet eleifend sit amet, varius in turpis. Maecenas fermentum ut ligula at consectetur. Nullam et tortor leo. 
+                                          {data.description}
                                         </p>
                                     </div>
                                     <div id="specification" className="container tab-pane fade">
@@ -632,98 +705,9 @@ const Singleproduct=()=>{
             </div>
         </div>
         {/* <!-- Brand End --> */}        
-         {/* <!-- Footer Start --> */}
-         <div className="footer">
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-lg-3 col-md-6">
-                            <div className="footer-widget">
-                                <h2>Get in Touch</h2>
-                                <div className="contact-info">
-                                    <p><i className="fa fa-map-marker"></i>123 E Store, Los Angeles, USA</p>
-                                    <p><i className="fa fa-envelope"></i>email@example.com</p>
-                                    <p><i className="fa fa-phone"></i>+123-456-7890</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-lg-3 col-md-6">
-                            <div className="footer-widget">
-                                <h2>Follow Us</h2>
-                                <div className="contact-info">
-                                    <div className="social">
-                                        <a href=""><i className="fab fa-twitter"></i></a>
-                                        <a href=""><i className="fab fa-facebook-f"></i></a>
-                                        <a href=""><i className="fab fa-linkedin-in"></i></a>
-                                        <a href=""><i className="fab fa-instagram"></i></a>
-                                        <a href=""><i className="fab fa-youtube"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-lg-3 col-md-6">
-                            <div className="footer-widget">
-                                <h2>Company Info</h2>
-                                <ul>
-                                    <li><a href="#">About Us</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Terms & Condition</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div className="col-lg-3 col-md-6">
-                            <div className="footer-widget">
-                                <h2>Purchase Info</h2>
-                                <ul>
-                                    <li><a href="#">Pyament Policy</a></li>
-                                    <li><a href="#">Shipping Policy</a></li>
-                                    <li><a href="#">Return Policy</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="row payment align-items-center">
-                        <div className="col-md-6">
-                            <div className="payment-method">
-                                <h2>We Accept:</h2>
-
-                                <img src={require("./images/payment-method.png").default} />
-                            </div>
-                        </div>
-                        <div className="col-md-6">
-                            <div className="payment-security">
-                                <h2>Secured By:</h2>
-
-                                <img src={require("./images/godaddy.svg").default} />
-                                <img src={require("./images/norton.svg").default} />
-                                <img src={require("./images/ssl.svg").default} />
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {/* <!-- Footer End --> */}
-
-            {/* <!-- Footer Bottom Start --> */}
-            <div className="footer-bottom">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-6 copyright">
-                            <p>Copyright &copy; <a href="https://htmlcodex.com">HTML Codex</a>. All Rights Reserved</p>
-                        </div>
-
-                        <div className="col-md-6 template-by">
-                            <p>Template By <a href="https://htmlcodex.com">HTML Codex</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <a href="#" className="back-to-top"><i className="fa fa-chevron-up"></i></a>
-            {/* <!-- Footer Bottom End -->    */}
+          {/* Footer start */}
+          <Footer/>
+          {/* Footer End */}
         </>
     )
 }
